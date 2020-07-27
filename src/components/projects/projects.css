@@ -1,0 +1,4 @@
+.projects-container {
+    display: grid;
+    border: solid black 2px;
+}
