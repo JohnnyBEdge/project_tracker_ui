@@ -23,7 +23,7 @@ const Nav = (props) => {
                     aria-label="menu">
                     <MenuIcon />
                 </IconButton>
-                <AddProject/>
+                <AddProject addProjectHandler={props.addProjectHandler}/>
                 </Toolbar>
             </AppBar>
         </div>
