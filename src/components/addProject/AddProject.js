@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-
+import 'components/addProject/addProject.css'
 
 import AddIcon from '@material-ui/icons/Add';
 import Tooltip from '@material-ui/core/Tooltip';
@@ -10,7 +10,7 @@ const AddProject = (props) => {
 
     const [hideInput, setHideInput] = useState(false);
 
-    const handleInput = () => setHideInput(!hideInput);
+    // const handleInput = () => setHideInput(!hideInput);
 
     const handleSubmit = (projName) => {
         console.log(projName)
@@ -26,6 +26,7 @@ const AddProject = (props) => {
             placeholder="New Project Name"
             variant="filled"
             color="secondary"
+            fullWidth={true}
             onKeyPress={ (e) => {
                 if(e.key === 'Enter'){
                     handleSubmit(e.target.value);
@@ -38,8 +39,8 @@ const AddProject = (props) => {
 
     return(
         <div className={"add-btn-container"}>
-            <Tooltip title="New Project" placement="left">
-                <AddIcon onClick={() => handleInput()}/>
+            <Tooltip title="New Project" >
+                <AddIcon onClick={() => setHideInput(!hideInput)}/>
             </Tooltip>
             {newProjectInput}
             

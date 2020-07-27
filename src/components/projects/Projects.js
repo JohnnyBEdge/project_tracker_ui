@@ -28,10 +28,15 @@ const Projects = () => {
 
     return(
         <div className={"projects-container"}>
-            <Nav addProjectHandler={addProject}/>
-            <p onClick={() => handlePrev()}>Previous</p>
+            <Nav 
+                addProjectHandler={addProject} 
+                currentProject={projects[current]}
+                handleNext={handleNext}
+                handlePrev={handlePrev}
+                />
+            {/* <p onClick={() => handlePrev()}>Previous</p> */}
             Project: {projects[current]}
-            <p onClick={() => handleNext()}>Next</p>
+            {/* <p onClick={() => handleNext()}>Next</p> */}
         
         </div>
     )

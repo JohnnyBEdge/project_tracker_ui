@@ -7,7 +7,7 @@ The project tracker is used to keep track of projects and all the goals that mak
 ### Built with:
 - React JS
 - Express/Node
-- MongoDB Atlas
+- DynamoDB
 - Material UI for design
 
 ### Learning Goals
@@ -16,3 +16,5 @@ The project tracker is used to keep track of projects and all the goals that mak
 its seperate stylesheet and images
 - Use absolute imports
     - create jsconfig
+- AWS technologies
+    -DyanmoDB for database management
