@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import '../projects/projects.css'
 
-import Nav from 'components/nav/Nav'
+import ProjectHeader from 'components/projectHeader/ProjectHeader';
 const Projects = () => {
     const [projects, setProjects] = useState(["one", "two", "three"]);
     const [current, setCurrent] = useState(0);
@@ -28,14 +28,20 @@ const Projects = () => {
 
     return(
         <div className={"projects-container"}>
-            <Nav 
+            <ProjectHeader
                 addProjectHandler={addProject} 
                 currentProject={projects[current]}
                 handleNext={handleNext}
                 handlePrev={handlePrev}
-                />
+                currentProject={projects[current]}/>
+            {/* <Nav 
+                addProjectHandler={addProject} 
+                currentProject={projects[current]}
+                handleNext={handleNext}
+                handlePrev={handlePrev}
+                /> */}
             {/* <p onClick={() => handlePrev()}>Previous</p> */}
-            Project: {projects[current]}
+            {/* Project: {projects[current]} */}
             {/* <p onClick={() => handleNext()}>Next</p> */}
         
         </div>
