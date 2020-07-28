@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
 import '../projects/projects.css'
-
 import ProjectHeader from 'components/projectHeader/ProjectHeader';
+
+
+
 const Projects = () => {
     const [projects, setProjects] = useState(["one", "two", "three"]);
     const [current, setCurrent] = useState(0);
@@ -34,16 +36,6 @@ const Projects = () => {
                 handleNext={handleNext}
                 handlePrev={handlePrev}
                 currentProject={projects[current]}/>
-            {/* <Nav 
-                addProjectHandler={addProject} 
-                currentProject={projects[current]}
-                handleNext={handleNext}
-                handlePrev={handlePrev}
-                /> */}
-            {/* <p onClick={() => handlePrev()}>Previous</p> */}
-            {/* Project: {projects[current]} */}
-            {/* <p onClick={() => handleNext()}>Next</p> */}
-        
         </div>
     )
 };

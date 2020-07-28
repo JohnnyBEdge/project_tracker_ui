@@ -6,7 +6,8 @@ The project tracker is used to keep track of projects and all the goals that mak
 
 ### Built with:
 - React JS
-- Express/Node
+- Lambda
+- API Gateway
 - DynamoDB
 - Material UI for design
 
@@ -17,4 +18,6 @@ its seperate stylesheet and images
 - Use absolute imports
     - create jsconfig
 - AWS technologies
-    -DyanmoDB for database management
+    - DyanmoDB for database management
+    - API Gateway to interact with Lambda functions
+    - Lambda to handle CRUD
