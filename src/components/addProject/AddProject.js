@@ -40,7 +40,8 @@ const AddProject = (props) => {
     return(
         <div className={"add-btn-container"}>
             <Tooltip title="New Project" >
-                <AddIcon onClick={() => setHideInput(!hideInput)}/>
+                <AddIcon 
+                    onClick={() => setHideInput(!hideInput)}/>
             </Tooltip>
             {newProjectInput}
             

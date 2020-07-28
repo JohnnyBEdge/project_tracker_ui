@@ -1,4 +1,7 @@
 .add-btn-container {
-    width: 400px;
     display: flex;
+}
+
+#outlined-required {
+    width: 300px
 }

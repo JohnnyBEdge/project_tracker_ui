@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import AddProject from 'components/addProject/AddProject';
+import TempDrawer from 'components/tempDrawer/TempDrawer'
 // import '../nav/nav.css'
 
 import AppBar from '@material-ui/core/AppBar';
@@ -9,9 +10,17 @@ import MenuIcon from '@material-ui/icons/Menu';
 import Typography from '@material-ui/core/Typography';
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
 
 
 import { makeStyles } from '@material-ui/core/styles';
+
+const toggleDrawer = (anchor, open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    };
+};
 
 const Nav = (props) => {
     // const [newProject, setNewProject] = useState("")
@@ -27,8 +36,6 @@ const Nav = (props) => {
                     aria-label="menu">
                     <MenuIcon />
                 </IconButton>
-                {/* <ArrowBackIosIcon
-                    onClick={() => props.handlePrev()}/> */}
                 <Typography variant="h6" className={classes.title}>
                     <ArrowBackIosIcon
                         onClick={() => props.handlePrev()}
@@ -39,8 +46,9 @@ const Nav = (props) => {
                         onClick={() => props.handleNext()}
                         className={classes.arrow}/>
                 </Typography>
-                {/* <ArrowForwardIosIcon
-                    onClick={() => props.handleNext()}/> */}
+                
+                <TempDrawer/>
+
                 <AddProject 
                     addProjectHandler={props.addProjectHandler}/>
                 </Toolbar>
