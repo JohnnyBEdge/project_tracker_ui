@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import '../projects/projects.css'
-import ProjectHeader from 'components/projectHeader/ProjectHeader';
+import ProjectHeader from '../projectHeader/ProjectHeader';
 // import axios from 'axios';
 
 

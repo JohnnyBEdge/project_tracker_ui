@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 
+import { createBrowserHistory } from 'history';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,6 +12,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { Auth } from 'aws-amplify';
+
+const history = createBrowserHistory();
 
 const RegisterForm = (props) => {
 
@@ -20,7 +24,11 @@ const RegisterForm = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordMatch, setPasswordMatch] = useState('');
-    const [isAdmin] =useState(false);
+    const [errors, setErrors] = useState({
+        cognito: null,
+        blankfield: false,
+        passwordmatch: false
+      })
 
 
     // const [fNameError, setFNameError] = useState(false);
@@ -60,9 +68,32 @@ const RegisterForm = (props) => {
     //         default:
     //     };
     // };
+    
+    const registerAccount = async() => {
+        console.log(username)
+        try{
+            const signUpResponse = await Auth.signUp({
+                username,
+                password,
+                attributes:{
+                    email: email
+                }
+            })
+            console.log(signUpResponse);
+            history.pushState("/projects");
+        } catch(error){
+            let err = null;
+            !error.message ? err = {"message": error} : err = error
+            setErrors({
+                errors: {
+                    ...errors,
+                    cognito: err
+                }
+            })
+        }
+    };
 
-
-    const addAccount = () => {
+    // const addAccount = () => {
 
         // if(
         //     fNameError === false && fname !== '' 
@@ -81,12 +112,12 @@ const RegisterForm = (props) => {
         //     headers: {
         //         "Content-Type" : "application/json"
         //     },
-        //     body: JSON.stringify({username, email, password, isAdmin})
+        //     body: JSON.stringify({userName, email, password, isAdmin})
         // })
         // .then(() => {setFname(''); setLname(''); setEmail(''); setPassword(''); setPasswordMatch('')}
         // ).then(props.handleFormView)
 
-    };
+    // };
 
 
     const classes = useStyles();
@@ -113,7 +144,7 @@ const RegisterForm = (props) => {
                             required
                             fullWidth
                             id="username"
-                            label="Username"
+                            label="username"
                             autoFocus
                             value={username}
                             onChange={({target}) => setUsername(target.value)}
@@ -210,7 +241,8 @@ const RegisterForm = (props) => {
                         variant="contained"
                         color="primary"
                         className={classes.submit}
-                        onClick={() => addAccount()}
+                        onClick={() => registerAccount()}
+                        // onClick={() => addAccount()}
                     >
                         Sign Up
                     </Button>

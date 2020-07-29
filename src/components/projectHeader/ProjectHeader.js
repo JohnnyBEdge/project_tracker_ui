@@ -1,7 +1,7 @@
 import React from 'react';
-import ProjectTitle from 'components/projectTitle/ProjectTitle';
-import AboutAccordion from 'components/aboutProject/AboutAccordion';
-import ProgressBar from 'components/progressBar/ProgressBar';
+import ProjectTitle from '../projectTitle/ProjectTitle';
+import AboutAccordion from '../aboutProject/AboutAccordion';
+import ProgressBar from '../progressBar/ProgressBar';
 
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
