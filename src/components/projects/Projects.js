@@ -1,12 +1,17 @@
 import React, {useState} from 'react';
 import '../projects/projects.css'
 import ProjectHeader from 'components/projectHeader/ProjectHeader';
+// import axios from 'axios';
 
 
 
 const Projects = () => {
     const [projects, setProjects] = useState(["one", "two", "three"]);
     const [current, setCurrent] = useState(0);
+
+    const getUsers = async() => {
+        // const res = await axios.get(process.env.DB_URL)
+    };
 
     const addProject = (newProject) => {
         setProjects(projects => [...projects, newProject]);

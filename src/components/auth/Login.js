@@ -132,8 +132,8 @@ const LoginForm = (props) => {
                         </Grid>
                         <Grid item>
                         <Link 
-                            to=""
-                            onClick={props.handleFormView} 
+                            to="/register"
+                            // onClick={props.handleFormView} 
                             variant="body2">
                             {"Don't have an account? Sign Up"}
                         </Link>
@@ -155,8 +155,10 @@ const useStyles = makeStyles((theme) => ({
       alignItems: 'center',
     },
     formContainer: {
-        border: "solid black 1px",
-        borderRadius: 5,
+        // border: "solid black 1px",
+        // borderRadius: 5,
+        // height: "100%"
+        
     },
     avatar: {
       margin: theme.spacing(1),

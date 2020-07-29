@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import Projects from './components/projects/Projects'
-import Login from './components/loginRegister/Login'
-import Register from './components/loginRegister/Register'
+import Login from './components/auth/Login'
+import Register from './components/auth/Register'
 
 import {
   BrowserRouter as Router,
