@@ -21,7 +21,7 @@ const RegisterForm = (props) => {
     const [password, setPassword] = useState('');
     const [passwordMatch, setPasswordMatch] = useState('');
     const [isAdmin] =useState(false);
-    const [cart] =useState([]);
+
 
     // const [fNameError, setFNameError] = useState(false);
     // const [lNameError, setLNameError] = useState(false);
@@ -81,7 +81,7 @@ const RegisterForm = (props) => {
         //     headers: {
         //         "Content-Type" : "application/json"
         //     },
-        //     body: JSON.stringify({fname, lname, email, password, isAdmin, cart})
+        //     body: JSON.stringify({username, email, password, isAdmin})
         // })
         // .then(() => {setFname(''); setLname(''); setEmail(''); setPassword(''); setPasswordMatch('')}
         // ).then(props.handleFormView)

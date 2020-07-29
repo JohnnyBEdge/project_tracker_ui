@@ -1,0 +1,10 @@
+{
+    "api": {
+        "invokeUrl": "https://6fstfizyn8.execute-api.us-west-1.amazonaws.com/user"
+    },
+    "cognito": {
+        "REGION": "use-west-2",
+        "USER_POOL_ID": "us-west-2_4h6Tnrvqc",
+        "APP_CLIENT_ID": "48e3s5eua2pi97s8fod3v3gvp5"
+    }
+}
