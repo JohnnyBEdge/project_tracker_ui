@@ -1,5 +1,5 @@
-import React, {useState, useEffect, useContext} from 'react';
-// import {setToken} from '../config/auth';
+import React, {useState, useEffect, useHistory} from 'react';
+import {Auth} from 'aws-amplify';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -13,57 +13,50 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { useHistory } from "react-router-dom";
 
+// const history = useHistory();
 
 const Login = (props) => {
 
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
     const [msg, setMsg] = useState('');
 
-    let history = useHistory();
+    
 
     const toggle = () => {
         setRemember(!remember);
     };
 
-    const handleLogin = () => {
+    const handleLogin = async () => {
         //checks if email and password is valid
-        setMsg('');
+        // setMsg('');
         if(remember){
-            localStorage.setItem('email', email);
+            localStorage.setItem('username', username);
         } else {
-            localStorage.removeItem('email');
+            localStorage.removeItem('username');
+        };
+        try{
+            const user = await Auth.signIn(username, password);
+            console.log("user from login: ", user);
+            props.auth.setIsAuthenticated(true);
+            props.auth.setUser(user);
+            // history.push('/');
+        } catch(error){
+            let err = null;
+            !error.message ? err = {"message": error} : err = error
+            console.log(err)
         };
 
-        // fetch('https://jm-shop-api.herokuapp.com/api/accounts/login', {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({ email, password })
-        // }).then(response => {
-        //     if(response.status === 200) {
-        //         setToken(response.headers.get('authentication'),);
-        //         // setMsg(<Redirect to='/inventory' />);
-        //         history.push('/inventory');
-        //         setLoginStatus("Logged In");
-        //     } else {
-        //         setMsg('Login Failed');
-        //     } 
-        //     return response.json()
-        // }).then(response => localStorage.setItem("user", JSON.stringify(response))
-        // );
     };
 
     const classes = useStyles();
 
     useEffect(() => {
-        const localEmail = localStorage.getItem('email');
-        if(localEmail){
-            setEmail(localEmail);
+        const localUsername = localStorage.getItem('username');
+        if(localUsername){
+            setUsername(localUsername);
             setRemember(true);
         }
     }, []);
@@ -87,13 +80,13 @@ const Login = (props) => {
                         margin="normal"
                         required
                         fullWidth
-                        id="email"
-                        label="Email Address"
-                        name="email"
-                        autoComplete="email"
+                        id="username"
+                        label="Username"
+                        name="username"
+                        autoComplete="username"
                         autoFocus
-                        value={email}
-                        onChange={({ target }) => setEmail(target.value)}
+                        value={username}
+                        onChange={({ target }) => setUsername(target.value)}
                     />
                     <TextField
                         variant="outlined"
@@ -135,13 +128,9 @@ const Login = (props) => {
                         <Grid item>
                         <Link 
                             to="/register"
-                            // onClick={props.handleFormView} 
                             variant="body2">
                             {"Don't have an account? Sign Up"}
                         </Link>
-                        {/* <p onClick={()=> history.push(`/register`)}>
-                        Don't have an account? Sign Up
-                        </p> */}
                         </Grid>
                     </Grid>
                 </form>

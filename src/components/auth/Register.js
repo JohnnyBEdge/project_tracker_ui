@@ -104,32 +104,7 @@ const RegisterForm = (props) => {
         }
     };
 }
-    
 
-    // const addAccount = () => {
-
-        // if(
-        //     usernameError === false && username !== '' 
-        //     && emailError === false && email !== ''
-        //     && passwordError === false && password !== ''
-        //     && passwordMatchError === false){
-        //         console.log("valid form")
-        //     } else {
-        //         alert("Invalid form, check your information.")
-        //     };
-
-
-        // fetch('https://jm-shop-api.herokuapp.com/api/accounts/register', {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type" : "application/json"
-        //     },
-        //     body: JSON.stringify({userName, email, password, isAdmin})
-        // })
-        // .then(() => {setFname(''); setLname(''); setEmail(''); setPassword(''); setPasswordMatch('')}
-        // ).then(props.handleFormView)
-
-    // };
 
     const classes = useStyles();
     
