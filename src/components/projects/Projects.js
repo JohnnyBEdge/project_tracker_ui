@@ -1,16 +1,34 @@
 import React, {useState} from 'react';
+import {Auth} from 'aws-amplify'
 import '../projects/projects.css'
 import ProjectHeader from '../projectHeader/ProjectHeader';
+import Button from '@material-ui/core/Button';
+import { useHistory } from "react-router-dom";
+
+
 // import axios from 'axios';
 
 
 
-const Projects = () => {
+const Projects = (props) => {
     const [projects, setProjects] = useState(["one", "two", "three"]);
     const [current, setCurrent] = useState(0);
 
-    const getUsers = async() => {
-        // const res = await axios.get(process.env.DB_URL)
+    let history = useHistory();
+
+
+    // const getUsers = async() => {
+    //     // const res = await axios.get(process.env.DB_URL)
+    // };
+    const handleLogout = async () => {
+        try{
+            Auth.signOut();
+            props.auth.setIsAuthenticated(false);
+            props.auth.setUser(null);
+            history.push('/login')
+        } catch(error){
+            console.log(error.message)
+        }
     };
 
     const addProject = (newProject) => {
@@ -35,6 +53,13 @@ const Projects = () => {
 
     return(
         <div className={"projects-container"}>
+            {props.auth.isAuthenticated && props.auth.user ?
+                <Button
+                    onClick={handleLogout}>
+                    LogOut {props.auth.user.username}
+                </Button>
+
+                : ""}
             <ProjectHeader
                 addProjectHandler={addProject} 
                 currentProject={projects[current]}

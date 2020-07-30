@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useHistory} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Auth} from 'aws-amplify';
 
 import Avatar from '@material-ui/core/Avatar';
@@ -13,8 +13,9 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useHistory } from "react-router-dom";
 
-// const history = useHistory();
+
 
 const Login = (props) => {
 
@@ -23,7 +24,7 @@ const Login = (props) => {
     const [remember, setRemember] = useState(false);
     const [msg, setMsg] = useState('');
 
-    
+    let history = useHistory();
 
     const toggle = () => {
         setRemember(!remember);
@@ -31,7 +32,7 @@ const Login = (props) => {
 
     const handleLogin = async () => {
         //checks if email and password is valid
-        // setMsg('');
+        setMsg('');
         if(remember){
             localStorage.setItem('username', username);
         } else {
@@ -42,11 +43,11 @@ const Login = (props) => {
             console.log("user from login: ", user);
             props.auth.setIsAuthenticated(true);
             props.auth.setUser(user);
-            // history.push('/');
+            history.push('/projects');
         } catch(error){
             let err = null;
             !error.message ? err = {"message": error} : err = error
-            console.log(err)
+            setMsg("Invalid credentials")
         };
 
     };
