@@ -24,6 +24,8 @@ const RegisterForm = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordMatch, setPasswordMatch] = useState('');
+    const [validForm, setValidForm] = useState(false);
+    const {errorMsg, setErrorMsg} = useState("Error")
     const [errors, setErrors] = useState({
         cognito: null,
         blankfield: false,
@@ -37,6 +39,7 @@ const RegisterForm = (props) => {
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [passwordMatchError, setPasswordMatchError] = useState(false);
+    
 
     const emailRegex = RegExp(
         /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -44,34 +47,45 @@ const RegisterForm = (props) => {
 	
     //   Password must contain at least one letter, at least one number, and be longer than six charaters.
     const passwordRegex = RegExp(
-        /^(?=.*[0-9]+.*)(?=.*[a-zA-Z]+.*)[0-9a-zA-Z]{6,}$/
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
     );
 
-    // const handleFormValidation = (e) => {
-    //     const {name, value} = e;
-    //     switch(name){
-    //         case "firstName":
-    //             fname === '' ? setFNameError(true) : setFNameError(false);
-    //             break;
-    //         case "lastName":
-    //             lname === '' ? setLNameError(true) : setLNameError(false);
-    //             break;
-    //         case "email":
-    //             email.match(emailRegex) ? setEmailError(false) : setEmailError(true);
-    //             break;
-    //         case "password":
-    //             value.match(passwordRegex) ? setPasswordError(false) : setPasswordError(true);
-    //             break;    
-    //         case "passwordMatch":
-    //             value.match(password) ? setPasswordMatchError(false) : setPasswordMatchError(true);
-    //             break;
-    //         default:
-    //     };
-    // };
+    const handleFormValidation = (e) => {
+        const {name, value} = e;
+        switch(name){
+            case "username":
+                username === '' ? setUsernameError(true) : setUsernameError(false);
+                break;
+            case "email":
+                email.match(emailRegex) ? setEmailError(false) : setEmailError(true);
+                break;
+            case "password":
+                value.match(passwordRegex) ? setPasswordError(false) : setPasswordError(true);
+                break;    
+            case "passwordMatch":
+                value.match(password) ? setPasswordMatchError(false) : setPasswordMatchError(true);
+                break;
+            default:
+        };
+    };
+
+    const handleFormErrors = () => {
+        if(
+            usernameError === false && username !== '' 
+            && emailError === false && email !== ''
+            && passwordError === false && password !== ''
+            && passwordMatchError === false && passwordMatch !== ''){
+                setValidForm(true);
+            } else {
+                alert("Invalid form, check your information.")
+            };
+    }
     
     const registerAccount = async() => {
-        console.log(username)
+        handleFormErrors()
+        if(validForm){
         try{
+            
             const signUpResponse = await Auth.signUp({
                 username,
                 password,
@@ -81,9 +95,11 @@ const RegisterForm = (props) => {
             })
             console.log(signUpResponse);
             history.pushState("/projects");
+            setValidForm(false)
         } catch(error){
             let err = null;
             !error.message ? err = {"message": error} : err = error
+            // alert(err||error)
             setErrors({
                 errors: {
                     ...errors,
@@ -92,12 +108,13 @@ const RegisterForm = (props) => {
             })
         }
     };
+}
+    
 
     // const addAccount = () => {
 
         // if(
-        //     fNameError === false && fname !== '' 
-        //     && lNameError === false && lname !== ''
+        //     usernameError === false && username !== '' 
         //     && emailError === false && email !== ''
         //     && passwordError === false && password !== ''
         //     && passwordMatchError === false){
@@ -133,6 +150,7 @@ const RegisterForm = (props) => {
                     <Typography component="h1" variant="h5">
                     Sign up
                     </Typography>
+                    {errorMsg}
                     <form id="sign_up_form" className={classes.form} noValidate>
                     <Grid container spacing={2}>
                         <Grid item xs={12} sm={6}>
@@ -148,7 +166,7 @@ const RegisterForm = (props) => {
                             autoFocus
                             value={username}
                             onChange={({target}) => setUsername(target.value)}
-                            // onBlur={({target}) => handleFormValidation(target)}
+                            onBlur={({target}) => handleFormValidation(target)}
                         />
                         </Grid>
                         {/* <Grid item xs={12} sm={6}> */}
@@ -195,7 +213,7 @@ const RegisterForm = (props) => {
                             autoComplete="email"
                             value={email}
                             onChange={({target}) => setEmail(target.value)}
-                            // onBlur={({target}) => handleFormValidation(target)}
+                            onBlur={({target}) => handleFormValidation(target)}
                         />
                         </Grid>
                         <Grid item xs={12}>
@@ -210,9 +228,9 @@ const RegisterForm = (props) => {
                             name="password"
                             value={password}
                             onChange={({target}) => {setPassword(target.value); 
-                                // handleFormValidation(target)
+                                handleFormValidation(target)
                             }}
-                            helperText="Password must be at least 6 characters long and include at least one number."
+                            helperText="Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character."
 
                         />
                         </Grid>
@@ -227,7 +245,7 @@ const RegisterForm = (props) => {
                             label="Confirm Password"
                             name="passwordMatch"
                             onChange={({target}) => {setPasswordMatch(target.value); 
-                                // handleFormValidation(target)
+                                handleFormValidation(target)
                             }}
                             helperText="Passwords must match."
                             value={passwordMatch}
