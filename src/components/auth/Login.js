@@ -13,15 +13,17 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useHistory } from "react-router-dom";
 
 
-const LoginForm = (props) => {
+const Login = (props) => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [remember, setRemember] = useState(false);
     const [msg, setMsg] = useState('');
 
+    let history = useHistory();
 
     const toggle = () => {
         setRemember(!remember);
@@ -137,6 +139,9 @@ const LoginForm = (props) => {
                             variant="body2">
                             {"Don't have an account? Sign Up"}
                         </Link>
+                        {/* <p onClick={()=> history.push(`/register`)}>
+                        Don't have an account? Sign Up
+                        </p> */}
                         </Grid>
                     </Grid>
                 </form>
@@ -180,4 +185,4 @@ const useStyles = makeStyles((theme) => ({
     }
   }));
 
-export default LoginForm;
+export default Login;

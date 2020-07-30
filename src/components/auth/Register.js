@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-import { createBrowserHistory } from 'history';
+import { useHistory } from "react-router-dom";
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -14,31 +14,25 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Auth } from 'aws-amplify';
 
-const history = createBrowserHistory();
-
 const RegisterForm = (props) => {
 
-    // const [fname, setFname] = useState('');
-    // const [lname, setLname] = useState('');
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordMatch, setPasswordMatch] = useState('');
     const [validForm, setValidForm] = useState(false);
-    const {errorMsg, setErrorMsg} = useState("Error")
+    const {errorMsg, setErrorMsg} = useState("Error");
     const [errors, setErrors] = useState({
         cognito: null,
         blankfield: false,
         passwordmatch: false
-      })
-
-
-    // const [fNameError, setFNameError] = useState(false);
-    // const [lNameError, setLNameError] = useState(false);
-    const [usernameError, setUsernameError] = useState(false)
+      });
+    const [usernameError, setUsernameError] = useState(false);
     const [emailError, setEmailError] = useState(false);
     const [passwordError, setPasswordError] = useState(false);
     const [passwordMatchError, setPasswordMatchError] = useState(false);
+
+    const history = useHistory();
     
 
     const emailRegex = RegExp(
@@ -94,8 +88,9 @@ const RegisterForm = (props) => {
                 }
             })
             console.log(signUpResponse);
-            history.pushState("/projects");
-            setValidForm(false)
+            setValidForm(false);
+            history.push('/login');
+
         } catch(error){
             let err = null;
             !error.message ? err = {"message": error} : err = error
@@ -136,7 +131,6 @@ const RegisterForm = (props) => {
 
     // };
 
-
     const classes = useStyles();
     
     return(
@@ -169,38 +163,6 @@ const RegisterForm = (props) => {
                             onBlur={({target}) => handleFormValidation(target)}
                         />
                         </Grid>
-                        {/* <Grid item xs={12} sm={6}> */}
-                        {/* <Grid item xs={12} sm={6}>
-                        <TextField
-                            // autoComplete="fname"
-                            name="firstName"
-                            error={fNameError}
-                            variant="outlined"
-                            required
-                            fullWidth
-                            id="firstName"
-                            label="First Name"
-                            autoFocus
-                            value={fname}
-                            onChange={({target}) => setFname(target.value)}
-                            onBlur={({target}) => handleFormValidation(target)}
-                        />
-                        </Grid>
-                        <Grid item xs={12} sm={6}> */}
-                        {/* <TextField
-                            variant="outlined"
-                            error={lNameError}
-                            required
-                            fullWidth
-                            id="lastName"
-                            label="Last Name"
-                            name="lastName"
-                            // autoComplete="lname"
-                            value={lname}
-                            onChange={({target}) => setLname(target.value)}
-                            onBlur={({target}) => handleFormValidation(target)}
-                        />
-                        </Grid> */}
                         <Grid item xs={12}>
                         <TextField
                             variant="outlined"
