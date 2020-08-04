@@ -17,7 +17,7 @@ export default function GoalHeader(props) {
             color="default"
             inputProps={{ 'aria-label': 'secondary checkbox' }}
         />
-        <p>Goal 1 Example Title</p>
+        <p>{props.goalDetails.goalName}</p>
         <ProgressBar />
         <p># subGoals</p>
     </div>

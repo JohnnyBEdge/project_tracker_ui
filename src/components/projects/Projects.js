@@ -67,8 +67,12 @@ const Projects = (props) => {
         // fetchProjects();
       }, []);
 
+    const createGoal = projects[0].projects[current].goals.map(goal => {
+        return <Goal goalDetails={goal}/>
+    })
 
     return(
+
         <div className={"projects-container"}>
             {props.auth.isAuthenticated && props.auth.user ?
                 <Button
@@ -84,7 +88,11 @@ const Projects = (props) => {
                 handlePrev={handlePrev}
                 // currentProject={projects[current]}/>
                 currentProject={projects[0].projects[current]}/>
-                <Goal/>
+
+                {createGoal}
+                {/* <Goal
+                    currentProject={projects[0].projects[current]}
+                    /> */}
         </div>
     )
 };

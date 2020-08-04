@@ -9,6 +9,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
 import KeyboardArrowDownIcon from '@material-ui/icons/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@material-ui/icons/KeyboardArrowUp';
+import SubGoalList from './SubGoalList';
 
 
 export default function Goal(props) {
@@ -16,10 +17,13 @@ export default function Goal(props) {
 
   return (
     <div className="goal-container">
-        <GoalHeader/>
+        <GoalHeader goalDetails={props.goalDetails}/>
         <AboutAccordion
-            about={"General goal desc should go here"}
-            details={"checkbox list here"}
+            about={props.goalDetails.goalDesc}
+            details={
+                <SubGoalList
+                    goalDetails={props.goalDetails}
+                />}
             />
     </div>
   );
