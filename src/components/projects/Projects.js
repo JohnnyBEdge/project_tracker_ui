@@ -2,77 +2,12 @@ import React, {useState, useEffect} from 'react';
 import {Auth} from 'aws-amplify'
 import '../projects/projects.css'
 import ProjectHeader from '../projectHeader/ProjectHeader';
+import Goal from '../goal/Goal'
 import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
 const config = require('../../config.json');
-const tempData = require('../../tempData.json')
-
-// const tempUserData = [
-//     {
-//         id: "11111",
-//         projects: [
-//             {
-//                 projName: "project1",
-//                 projDesc: "project1 description",
-//                 goals: [
-//                     {
-//                         goalName: "goal1",
-//                         goalDesc: "goal 1 description",
-//                         subGoals: [
-//                             {}, {}
-//                         ]
-//                     }
-//                 ]
-//             },
-//             {
-//                 projName: "project2",
-//                 projDesc: "project2 description",
-//                 goals: [
-//                     {
-//                         goalName: "goal2",
-//                         goalDesc: "goal 2 description",
-//                         subGoals: [
-//                             {}, {}
-//                         ]
-//                     }
-//                 ]
-//             }
-//         ]
-//     },
-//     {
-//         id: "22222",
-//         projects: [
-//             {
-//                 projName: "project1",
-//                 projDesc: "project1 description",
-//                 goals: [
-//                     {
-//                         goalName: "goal1",
-//                         goalDesc: "goal 1 description",
-//                         subGoals: [
-//                             {}, {}
-//                         ]
-//                     }
-//                 ]
-//             },
-//             {
-//                 projName: "project2",
-//                 projDesc: "project2 description",
-//                 goals: [
-//                     {
-//                         goalName: "goal2",
-//                         goalDesc: "goal 2 description",
-//                         subGoals: [
-//                             {}, {}
-//                         ]
-//                     }
-//                 ]
-//             }
-//         ]
-//     }
-// ]
-
+const tempData = require('../../tempData.json');
 
 
 const Projects = (props) => {
@@ -89,9 +24,7 @@ const Projects = (props) => {
             console.log("Error: ", error)
         };
     }
-
-    console.log("projects ",projects)
-    console.log("current project ",projects[0].projects[current].goals.length)
+    console.log("current project ",projects[0].projects[current])
     
 
     let history = useHistory();
@@ -151,6 +84,7 @@ const Projects = (props) => {
                 handlePrev={handlePrev}
                 // currentProject={projects[current]}/>
                 currentProject={projects[0].projects[current]}/>
+                <Goal/>
         </div>
     )
 };

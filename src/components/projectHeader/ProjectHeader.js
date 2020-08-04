@@ -29,10 +29,16 @@ export default function ProjectHeader(props) {
       <div className="progress-bar">
         <ProgressBar 
           currentProject={props.currentProject}/>
+          #Goals
       </div>
 
       <div className="about-accordion">
-        <AboutAccordion />
+        <AboutAccordion 
+          // currentProject={props.currentProject}
+          about={"About"}
+          details={props.currentProject.projDesc}
+          
+          />
       </div>
     </div>
   );

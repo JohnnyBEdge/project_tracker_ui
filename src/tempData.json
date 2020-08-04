@@ -5,7 +5,7 @@
         "projects": [
             {
                 "projName": "project1-1",
-                "projDesc": "project1-1 description",
+                "projDesc": "project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description ",
                 "goals": [
                     {
                         "goalName": "goal1-1",
@@ -32,7 +32,7 @@
             },
             {
                 "projName": "project1-2",
-                "projDesc": "project2-1 description",
+                "projDesc": "project1-2 description project1-2 description project1-2 description project1-2 description project1-2 description project1-2 description ",
                 "goals": [
                     {
                         "goalName": "goal2",
@@ -50,7 +50,7 @@
         "projects": [
             {
                 "projName": "project2-1",
-                "projDesc": "project2-1 description",
+                "projDesc": "project2-1 description project2-1 description project2-1 description project2-1 description project2-1 description project2-1 description project2-1 description ",
                 "goals": [
                     {
                         "goalName": "goal1",

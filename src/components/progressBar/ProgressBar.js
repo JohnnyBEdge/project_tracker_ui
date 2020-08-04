@@ -36,7 +36,7 @@ export default function ProgressBar(props) {
     <div className={classes.root}>
       <BorderLinearProgress variant="determinate" value={50} /> 
       {/* number of goals should be inline with progress bar */}
-      # Goals: {props.currentProject.goals.length}
+      {/* # Goals: {props.currentProject.goals.length} */}
     </div>
   );
 }

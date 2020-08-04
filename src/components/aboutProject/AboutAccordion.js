@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { makeStyles } from '@material-ui/core/styles';
 
 
-export default function AboutAccordion() {
+export default function AboutAccordion(props) {
 
   const classes = useStyles();
 
@@ -21,14 +21,15 @@ export default function AboutAccordion() {
         id="panel1a-header"
       >
         <Typography className={classes.heading}>
-          About
+          {props.about}
+          {/* About */}
         </Typography>
         
       </AccordionSummary>
       <AccordionDetails>
         <Typography>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex,
-          sit amet blandit leo lobortis eget.
+          {props.details}
+          {/* {props.currentProject.projDesc} */}
         </Typography>
       </AccordionDetails>
     </Accordion>
