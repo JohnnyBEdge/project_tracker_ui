@@ -27,7 +27,8 @@ export default function ProjectHeader(props) {
       </div>
 
       <div className="progress-bar">
-        <ProgressBar />
+        <ProgressBar 
+          currentProject={props.currentProject}/>
       </div>
 
       <div className="about-accordion">

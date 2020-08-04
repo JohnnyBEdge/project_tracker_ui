@@ -1,18 +1,98 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Auth} from 'aws-amplify'
 import '../projects/projects.css'
 import ProjectHeader from '../projectHeader/ProjectHeader';
 import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom";
+import axios from 'axios';
+const config = require('../../config.json');
+const tempData = require('../../tempData.json')
 
-
-// import axios from 'axios';
+// const tempUserData = [
+//     {
+//         id: "11111",
+//         projects: [
+//             {
+//                 projName: "project1",
+//                 projDesc: "project1 description",
+//                 goals: [
+//                     {
+//                         goalName: "goal1",
+//                         goalDesc: "goal 1 description",
+//                         subGoals: [
+//                             {}, {}
+//                         ]
+//                     }
+//                 ]
+//             },
+//             {
+//                 projName: "project2",
+//                 projDesc: "project2 description",
+//                 goals: [
+//                     {
+//                         goalName: "goal2",
+//                         goalDesc: "goal 2 description",
+//                         subGoals: [
+//                             {}, {}
+//                         ]
+//                     }
+//                 ]
+//             }
+//         ]
+//     },
+//     {
+//         id: "22222",
+//         projects: [
+//             {
+//                 projName: "project1",
+//                 projDesc: "project1 description",
+//                 goals: [
+//                     {
+//                         goalName: "goal1",
+//                         goalDesc: "goal 1 description",
+//                         subGoals: [
+//                             {}, {}
+//                         ]
+//                     }
+//                 ]
+//             },
+//             {
+//                 projName: "project2",
+//                 projDesc: "project2 description",
+//                 goals: [
+//                     {
+//                         goalName: "goal2",
+//                         goalDesc: "goal 2 description",
+//                         subGoals: [
+//                             {}, {}
+//                         ]
+//                     }
+//                 ]
+//             }
+//         ]
+//     }
+// ]
 
 
 
 const Projects = (props) => {
-    const [projects, setProjects] = useState(["one", "two", "three"]);
+    const [projects, setProjects] = useState(tempData);
+    // const [projects, setProjects] = useState(tempUserData);
     const [current, setCurrent] = useState(0);
+
+    const fetchProjects = async () => {
+        try{
+            const res = await axios.get(`${config.api.invokeUrl}/projects`);
+            setProjects(res.data);
+            // console.log("Projects: ",res.data)
+        } catch(error){
+            console.log("Error: ", error)
+        };
+    }
+
+    console.log("projects ",projects)
+    console.log("current project ",projects[0].projects[current].goals.length)
+    
 
     let history = useHistory();
 
@@ -50,6 +130,10 @@ const Projects = (props) => {
         };
     };
 
+    useEffect(() => {
+        // fetchProjects();
+      }, []);
+
 
     return(
         <div className={"projects-container"}>
@@ -62,10 +146,11 @@ const Projects = (props) => {
                 : ""}
             <ProjectHeader
                 addProjectHandler={addProject} 
-                currentProject={projects[current]}
+                // currentProject={projects[current]}
                 handleNext={handleNext}
                 handlePrev={handlePrev}
-                currentProject={projects[current]}/>
+                // currentProject={projects[current]}/>
+                currentProject={projects[0].projects[current]}/>
         </div>
     )
 };

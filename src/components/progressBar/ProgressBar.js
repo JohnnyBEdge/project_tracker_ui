@@ -29,14 +29,14 @@ const useStyles = makeStyles({
   },
 });
 
-export default function ProgressBar() {
+export default function ProgressBar(props) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <BorderLinearProgress variant="determinate" value={50} /> 
       {/* number of goals should be inline with progress bar */}
-      # goals
+      # Goals: {props.currentProject.goals.length}
     </div>
   );
 }
