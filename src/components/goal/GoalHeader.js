@@ -24,7 +24,9 @@ export default function GoalHeader(props) {
             inputProps={{ 'aria-label': 'secondary checkbox' }}
         />
         <p>{props.goalDetails.goalName}</p>
-        <ProgressBar />
+        <ProgressBar 
+        //total subgoals completed over total subgoals. *100 to get percent
+          progress={handleCount()/props.goalDetails.subGoals.length *100}/>
         <p>{handleCount()}/ {props.goalDetails.subGoals.length}</p>
         
     </div>
