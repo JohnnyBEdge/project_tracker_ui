@@ -13,15 +13,15 @@
                         "subGoals": [
                             {
                                 "subGoal": "Goal 1 Subgoal1",
-                                "checked": "false"
+                                "checked": false
                             },
                             {
                                 "subGoal": "Goal 1 Subgoal2",
-                                "checked": "true"
+                                "checked": true
                             },
                             {
                                 "subGoal": "Goal 1 Subgoal3",
-                                "checked": "true"
+                                "checked": true
 
                             }
                         ]
@@ -32,15 +32,15 @@
                         "subGoals": [
                             {
                                 "subGoal": "Goal 2 Subgoal1",
-                                "checked": "false"
+                                "checked": false
                             },
                             {
                                 "subGoal": "Goal 2 Subgoal2",
-                                "checked": "true"
+                                "checked": true
                             },
                             {
                                 "subGoal": "Goal 2 Subgoal3",
-                                "checked": "false"
+                                "checked": false
                             }
                         ]
                     },
@@ -50,11 +50,11 @@
                         "subGoals": [
                             {
                                 "subGoal": "Goal 3 Subgoal1",
-                                "checked": "false"
+                                "checked": false
                             },
                             {
                                 "subGoal": "Goal 3 subgoal2",
-                                "checked": "true"
+                                "checked": true
                             }
                         ]
                     }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -17,44 +17,54 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SubGoalList(props) {
   const classes = useStyles();
-  const [checked, setChecked] = React.useState([0]);
+  const [checked, setChecked] = useState(true);
 
-  const handleToggle = () => () => {
-    props.checkedBox()
-    // const currentIndex = checked.indexOf(value);
-    // const newChecked = [...checked];
+  const projectDetails = props.goalDetails;
+  console.log("project details",projectDetails.subGoals)
 
-    // if (currentIndex === -1) {
-    //   newChecked.push(value);
-    // } else {
-    //   newChecked.splice(currentIndex, 1);
-    // }
+// const count = projectDetails.subGoals.filter(subgoal => subgoal.checked).length;
 
-    // setChecked(newChecked);
+
+
+  const handleCount = () => {
+      return projectDetails.subGoals.filter(subgoal => subgoal.checked).length;
+
   };
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+  };
+
+  useEffect(() => {
+    handleCount()
+  }, []);
 
   return (
     <List className={classes.root}>
       {props.goalDetails.subGoals.map((subgoal) => {
         const labelId = `checkbox-list-label-${subgoal}`;
-        const isChecked = subgoal.checked === "true" ? true : false
-
+        // const isChecked = subgoal.checked ? true : false
+        // const value = subgoal.checked ? 1 : 0
+        
         return (
+          
           <ListItem 
             key={subgoal} 
             role={undefined} 
             dense 
             button 
-            // onClick={handleToggle()}
-            // onClick={handleToggle(subgoal)}
+            
+            // onClick={() => handleToggle(value)}
             >
             <ListItemIcon>
-              {isChecked}
               <Checkbox
+                // value={value}
                 edge="start"
-                checked={isChecked}
+                // checked={isChecked}
+                // checked={checked}
                 tabIndex={-1}
-                disableRipple
+                onChange={handleChange}
+                // disableRipple
                 inputProps={{ 'aria-labelledby': labelId }}
               />
             </ListItemIcon>
@@ -63,5 +73,6 @@ export default function SubGoalList(props) {
         );
       })}
     </List>
+
   );
 }

@@ -9,6 +9,12 @@ import AddIcon from '@material-ui/icons/Add';
 
 
 export default function GoalHeader(props) {
+  const projectDetails = props.goalDetails;
+
+  const handleCount = () => {
+    return projectDetails.subGoals.filter(subgoal => subgoal.checked).length;
+};
+
   const classes = useStyles();
 
   return (
@@ -19,7 +25,7 @@ export default function GoalHeader(props) {
         />
         <p>{props.goalDetails.goalName}</p>
         <ProgressBar />
-        <p>{props.numchecked}/ {props.goalDetails.subGoals.length}</p>
+        <p>{handleCount()}/ {props.goalDetails.subGoals.length}</p>
         
     </div>
   );
