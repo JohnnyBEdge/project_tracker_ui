@@ -19,7 +19,8 @@ export default function GoalHeader(props) {
         />
         <p>{props.goalDetails.goalName}</p>
         <ProgressBar />
-        <p># subGoals</p>
+        <p>{props.numchecked}/ {props.goalDetails.subGoals.length}</p>
+        
     </div>
   );
 };

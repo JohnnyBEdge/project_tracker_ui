@@ -19,30 +19,40 @@ export default function SubGoalList(props) {
   const classes = useStyles();
   const [checked, setChecked] = React.useState([0]);
 
-  const handleToggle = (value) => () => {
-    const currentIndex = checked.indexOf(value);
-    const newChecked = [...checked];
+  const handleToggle = () => () => {
+    props.checkedBox()
+    // const currentIndex = checked.indexOf(value);
+    // const newChecked = [...checked];
 
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
+    // if (currentIndex === -1) {
+    //   newChecked.push(value);
+    // } else {
+    //   newChecked.splice(currentIndex, 1);
+    // }
 
-    setChecked(newChecked);
+    // setChecked(newChecked);
   };
 
   return (
     <List className={classes.root}>
       {props.goalDetails.subGoals.map((subgoal) => {
         const labelId = `checkbox-list-label-${subgoal}`;
+        const isChecked = subgoal.checked === "true" ? true : false
 
         return (
-          <ListItem key={subgoal} role={undefined} dense button onClick={handleToggle(subgoal)}>
+          <ListItem 
+            key={subgoal} 
+            role={undefined} 
+            dense 
+            button 
+            // onClick={handleToggle()}
+            // onClick={handleToggle(subgoal)}
+            >
             <ListItemIcon>
+              {isChecked}
               <Checkbox
                 edge="start"
-                checked={checked.indexOf(subgoal) !== -1}
+                checked={isChecked}
                 tabIndex={-1}
                 disableRipple
                 inputProps={{ 'aria-labelledby': labelId }}

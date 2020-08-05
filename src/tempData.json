@@ -12,13 +12,17 @@
                         "goalDesc": "goal1 description",
                         "subGoals": [
                             {
-                                "subGoal": "Goal 1 Subgoal1"
+                                "subGoal": "Goal 1 Subgoal1",
+                                "checked": "false"
                             },
                             {
-                                "subGoal": "Goal 1 Subgoal2"
+                                "subGoal": "Goal 1 Subgoal2",
+                                "checked": "true"
                             },
                             {
-                                "subGoal": "Goal 1 Subgoal3"
+                                "subGoal": "Goal 1 Subgoal3",
+                                "checked": "true"
+
                             }
                         ]
                     },
@@ -27,13 +31,16 @@
                         "goalDesc": "goal 2 description",
                         "subGoals": [
                             {
-                                "subGoal": "Goal 2 Subgoal1"
+                                "subGoal": "Goal 2 Subgoal1",
+                                "checked": "false"
                             },
                             {
-                                "subGoal": "Goal 2 Subgoal2"
+                                "subGoal": "Goal 2 Subgoal2",
+                                "checked": "true"
                             },
                             {
-                                "subGoal": "Goal 2 Subgoal3"
+                                "subGoal": "Goal 2 Subgoal3",
+                                "checked": "false"
                             }
                         ]
                     },
@@ -42,10 +49,12 @@
                         "goalDesc": "goal 3 description",
                         "subGoals": [
                             {
-                                "subGoal": "Goal 3 Subgoal1"
+                                "subGoal": "Goal 3 Subgoal1",
+                                "checked": "false"
                             },
                             {
-                                "subGoal": "Goal 3 subgoal2"
+                                "subGoal": "Goal 3 subgoal2",
+                                "checked": "true"
                             }
                         ]
                     }

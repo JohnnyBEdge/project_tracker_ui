@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ProjectTitle from '../projectTitle/ProjectTitle';
 import AboutAccordion from '../aboutProject/AboutAccordion';
 import ProgressBar from '../progressBar/ProgressBar';
@@ -13,16 +13,26 @@ import SubGoalList from './SubGoalList';
 
 
 export default function Goal(props) {
+  const [numChecked, setNumChecked] = useState(0)
+
+  const totalChecked = () => {
+      
+  }
+
+
   const classes = useStyles();
 
   return (
     <div className="goal-container">
-        <GoalHeader goalDetails={props.goalDetails}/>
+        <GoalHeader 
+          goalDetails={props.goalDetails}
+          totalChecked={totalChecked}/>
         <AboutAccordion
             about={props.goalDetails.goalDesc}
             details={
                 <SubGoalList
                     goalDetails={props.goalDetails}
+                    // checkedBox={checkedBox}
                 />}
             />
     </div>
