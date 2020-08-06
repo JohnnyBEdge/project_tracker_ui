@@ -2,12 +2,12 @@ import React from 'react';
 import ProjectTitle from '../projectTitle/ProjectTitle';
 import AboutAccordion from '../aboutProject/AboutAccordion';
 import ProgressBar from '../progressBar/ProgressBar';
+import AddGoalForm from '../goal/AddGoalForm';
 
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
-
-
-
+// import AddCircleIcon from '@material-ui/icons/AddCircle';
+// import Tooltip from '@material-ui/core/Tooltip';
 
 
 export default function ProjectHeader(props) {
@@ -18,7 +18,7 @@ export default function ProjectHeader(props) {
       <div className="new-proj-btn">
         <AddIcon />
       </div>
-
+      <AddGoalForm/>
       <div className="title-container">
         <ProjectTitle 
           currentProject={props.currentProject}
@@ -29,7 +29,10 @@ export default function ProjectHeader(props) {
       <div className="progress-bar">
         <ProgressBar 
           currentProject={props.currentProject}/>
-          #Goals
+          {/* <Tooltip title="Add New Goal" aria-label="add">
+            <AddCircleIcon color="primary" fontSize="small"/>
+          </Tooltip> */}
+          Total Goals: {props.currentProject.goals.length}
       </div>
 
       <div className="about-accordion">

@@ -94,7 +94,7 @@ const Projects = (props) => {
                 // currentProject={projects[current]}
                 handleNext={handleNext}
                 handlePrev={handlePrev}
-                // currentProject={projects[current]}/>
+                // addGoal={addGoal}
                 currentProject={projects[current]}/>
 
                 {createGoal}
