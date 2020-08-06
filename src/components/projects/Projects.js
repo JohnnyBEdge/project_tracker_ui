@@ -24,8 +24,16 @@ const Projects = (props) => {
             console.log("Error: ", error)
         };
     }
-    console.log("current project ",projects[0].projects[current])
+    console.log("current project ",projects[current])
+
+    const deleteSubGoal = () => {
+
+    }
     
+    const manageCurrentProject = {
+        deleteGoal: () => {},
+        deleteSubGoal: deleteSubGoal
+    }
 
     let history = useHistory();
 
@@ -44,9 +52,9 @@ const Projects = (props) => {
         }
     };
 
-    const addProject = (newProject) => {
-        setProjects(projects => [...projects, newProject]);
-    };
+    // const addProject = (newProject) => {
+    //     setProjects(projects => [...projects, newProject]);
+    // };
 
     const handleNext = () => {
         if(current === projects.length-1){
@@ -67,7 +75,7 @@ const Projects = (props) => {
         // fetchProjects();
       }, []);
 
-    const createGoal = projects[0].projects[current].goals.map(goal => {
+    const createGoal = projects[current].goals.map(goal => {
         return <Goal goalDetails={goal}/>
     })
 
@@ -82,12 +90,12 @@ const Projects = (props) => {
 
                 : ""}
             <ProjectHeader
-                addProjectHandler={addProject} 
+                // addProjectHandler={addProject} 
                 // currentProject={projects[current]}
                 handleNext={handleNext}
                 handlePrev={handlePrev}
                 // currentProject={projects[current]}/>
-                currentProject={projects[0].projects[current]}/>
+                currentProject={projects[current]}/>
 
                 {createGoal}
                 {/* <Goal

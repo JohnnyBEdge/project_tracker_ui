@@ -69,9 +69,13 @@ export default function SubGoalList(props) {
               />
             </ListItemIcon>
             <ListItemText id={labelId} primary={subgoal.subGoal} />
+            <button>Edit</button>
+            <button>Delete</button>
           </ListItem>
         );
+        
       })}
+      
     </List>
 
   );

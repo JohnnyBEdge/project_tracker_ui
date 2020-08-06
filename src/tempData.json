@@ -1,111 +1,74 @@
 
 [
     {
-        "id": "11111",
-        "projects": [
+        "projName": "project1-1",
+        "projDesc": "project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description ",
+        "goals": [
             {
-                "projName": "project1-1",
-                "projDesc": "project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description ",
-                "goals": [
+                "goalName": "project 1 goal 1",
+                "goalDesc": "goal1 description",
+                "subGoals": [
                     {
-                        "goalName": "project 1 goal 1",
-                        "goalDesc": "goal1 description",
-                        "subGoals": [
-                            {
-                                "subGoal": "Goal 1 Subgoal1",
-                                "checked": false
-                            },
-                            {
-                                "subGoal": "Goal 1 Subgoal2",
-                                "checked": true
-                            },
-                            {
-                                "subGoal": "Goal 1 Subgoal3",
-                                "checked": true
+                        "subGoal": "Goal 1 Subgoal1",
+                        "checked": false
+                    },
+                    {
+                        "subGoal": "Goal 1 Subgoal2",
+                        "checked": true
+                    },
+                    {
+                        "subGoal": "Goal 1 Subgoal3",
+                        "checked": true
 
-                            }
-                        ]
-                    },
-                    {
-                        "goalName": "project 1 goal 2",
-                        "goalDesc": "goal 2 description",
-                        "subGoals": [
-                            {
-                                "subGoal": "Goal 2 Subgoal1",
-                                "checked": false
-                            },
-                            {
-                                "subGoal": "Goal 2 Subgoal2",
-                                "checked": true
-                            },
-                            {
-                                "subGoal": "Goal 2 Subgoal3",
-                                "checked": false
-                            }
-                        ]
-                    },
-                    {
-                        "goalName": "project 1 goal 3",
-                        "goalDesc": "goal 3 description",
-                        "subGoals": [
-                            {
-                                "subGoal": "Goal 3 Subgoal1",
-                                "checked": false
-                            },
-                            {
-                                "subGoal": "Goal 3 subgoal2",
-                                "checked": true
-                            }
-                        ]
                     }
                 ]
             },
             {
-                "projName": "project2",
-                "projDesc": "project2 description project1-2 description project1-2 description project1-2 description project1-2 description project1-2 description ",
-                "goals": [
+                "goalName": "project 1 goal 2",
+                "goalDesc": "goal 2 description",
+                "subGoals": [
                     {
-                        "goalName": "project 2 goal 1",
-                        "goalDesc": "goal 2 description",
-                        "subGoals": [
-                            {}, {}
-                        ]
+                        "subGoal": "Goal 2 Subgoal1",
+                        "checked": false
+                    },
+                    {
+                        "subGoal": "Goal 2 Subgoal2",
+                        "checked": true
+                    },
+                    {
+                        "subGoal": "Goal 2 Subgoal3",
+                        "checked": false
+                    }
+                ]
+            },
+            {
+                "goalName": "project 1 goal 3",
+                "goalDesc": "goal 3 description",
+                "subGoals": [
+                    {
+                        "subGoal": "Goal 3 Subgoal1",
+                        "checked": false
+                    },
+                    {
+                        "subGoal": "Goal 3 subgoal2",
+                        "checked": true
                     }
                 ]
             }
         ]
     },
     {
-        "id": "22222",
-        "projects": [
+        "projName": "project2",
+        "projDesc": "project2 description project1-2 description project1-2 description project1-2 description project1-2 description project1-2 description ",
+        "goals": [
             {
-                "projName": "project2-1",
-                "projDesc": "project2-1 description project2-1 description project2-1 description project2-1 description project2-1 description project2-1 description project2-1 description ",
-                "goals": [
-                    {
-                        "goalName": "goal1",
-                        "goalDesc": "goal 1 description",
-                        "subGoals": [
-                            {}, {}
-                        ]
-                    }
-                ]
-            },
-            {
-                "projName": "project2-2",
-                "projDesc": "project2-2 description",
-                "goals": [
-                    {
-                        "goalName": "goal2",
-                        "goalDesc": "goal 2 description",
-                        "subGoals": [
-                            {}, {}
-                        ]
-                    }
+                "goalName": "project 2 goal 1",
+                "goalDesc": "goal 2 description",
+                "subGoals": [
+                    {}, {}
                 ]
             }
         ]
     }
 ]
-
 
