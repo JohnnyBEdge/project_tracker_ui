@@ -20,16 +20,21 @@ const AddGoalForm = (props) => {
     const [open, setOpen] = useState(false); 
 
     const toggleModal = () => {
-        if(open){
-            setOpen(false);
-        } else {
-            setOpen(true)
-        };
+        setOpen(!open)
     };
 
-//   function addGoal(){
-
-//   };
+  function addGoal(){
+    let newGoal = {goalName, goalDesc, subGoals}
+    props.projectManager.currentProject.goals.push(newGoal);
+    // const indx = props.projectManager.projects.findIndex(el => el.id === updatedProject.id);
+    //     return events.splice(indx, 1, {_id:id, ...updatedEvent})
+    let updated = props.projectManager.currentProject
+    console.log("updated goals",updated)
+    const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
+    props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated))
+    console.log()
+        toggleModal();
+  };
 
   const classes = useStyles();
     return (
@@ -87,7 +92,7 @@ const AddGoalForm = (props) => {
                     variant="contained"
                     color="primary"
                     startIcon={<AddIcon /> }
-                    // onClick={() => editEvent()}
+                    onClick={() => addGoal()}
                 >Add New Goal
                 </Button>                                               
                 </div>

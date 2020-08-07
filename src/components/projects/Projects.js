@@ -30,9 +30,11 @@ const Projects = (props) => {
 
     }
     
-    const manageCurrentProject = {
-        deleteGoal: () => {},
-        deleteSubGoal: deleteSubGoal
+    const projectManager = {
+        currentProject: projects[current],
+        projects: projects,
+        setCurrent: setCurrent,
+        setProjects: setProjects
     }
 
     let history = useHistory();
@@ -94,8 +96,8 @@ const Projects = (props) => {
                 // currentProject={projects[current]}
                 handleNext={handleNext}
                 handlePrev={handlePrev}
-                // addGoal={addGoal}
-                currentProject={projects[current]}/>
+                projectManager={projectManager}
+                />
 
                 {createGoal}
                 {/* <Goal

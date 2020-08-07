@@ -12,7 +12,7 @@ export default function ProjectTitle(props) {
             onClick={() => props.handlePrev()}
             // className={classes.arrow}
             />
-        Project: {props.currentProject.projName}
+        Project: {props.projectManager.currentProject.projName}
         
         <ArrowForwardIosIcon
             onClick={() => props.handleNext()}

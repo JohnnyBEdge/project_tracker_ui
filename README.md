@@ -21,3 +21,6 @@ its seperate stylesheet and images
     - DyanmoDB for database management
     - API Gateway to interact with Lambda functions
     - Lambda to handle CRUD
+
+## Data Schema
+  

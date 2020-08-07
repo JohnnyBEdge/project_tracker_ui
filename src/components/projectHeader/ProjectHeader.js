@@ -18,28 +18,33 @@ export default function ProjectHeader(props) {
       <div className="new-proj-btn">
         <AddIcon />
       </div>
-      <AddGoalForm/>
       <div className="title-container">
         <ProjectTitle 
-          currentProject={props.currentProject}
+          projectManager={props.projectManager}
+          // currentProject={props.currentProject}
           handleNext={props.handleNext}
           handlePrev={props.handlePrev}/>
       </div>
 
       <div className="progress-bar">
         <ProgressBar 
-          currentProject={props.currentProject}/>
+          projectManager={props.projectManager}
+          // currentProject={props.currentProject}
+          />
           {/* <Tooltip title="Add New Goal" aria-label="add">
             <AddCircleIcon color="primary" fontSize="small"/>
           </Tooltip> */}
-          Total Goals: {props.currentProject.goals.length}
+          <AddGoalForm 
+            // currentProject={props.currentProject}
+            projectManager={props.projectManager}/>
+          Total Goals: {props.projectManager.currentProject.goals.length}
       </div>
 
       <div className="about-accordion">
         <AboutAccordion 
           // currentProject={props.currentProject}
           about={"About"}
-          details={props.currentProject.projDesc}
+          details={props.projectManager.currentProject.projDesc}
           
           />
       </div>

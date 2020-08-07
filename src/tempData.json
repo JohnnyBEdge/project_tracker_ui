@@ -1,6 +1,7 @@
 
 [
-    {
+    {   
+        "id": "11111",
         "projName": "project1-1",
         "projDesc": "project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description ",
         "goals": [
@@ -58,6 +59,7 @@
         ]
     },
     {
+        "id": "22222",
         "projName": "project2",
         "projDesc": "project2 description project1-2 description project1-2 description project1-2 description project1-2 description project1-2 description ",
         "goals": [
