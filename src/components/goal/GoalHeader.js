@@ -1,6 +1,7 @@
 import React from 'react';
 import ProjectTitle from '../projectTitle/ProjectTitle';
 import AboutAccordion from '../aboutProject/AboutAccordion';
+import AddSubgoalForm from '../goal/AddSubgoalForm';
 import ProgressBar from '../progressBar/ProgressBar';
 import Checkbox from '@material-ui/core/Checkbox';
 
@@ -22,8 +23,9 @@ export default function GoalHeader(props) {
         <Checkbox
             color="default"
             inputProps={{ 'aria-label': 'secondary checkbox' }}
-        />
+        /> 
         <p>{props.goalDetails.goalName}</p>
+        <AddSubgoalForm />
         <ProgressBar 
         //total subgoals completed over total subgoals. *100 to get percent
           progress={handleCount()/props.goalDetails.subGoals.length *100}/>
