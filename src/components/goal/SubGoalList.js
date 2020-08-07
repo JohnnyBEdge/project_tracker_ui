@@ -31,18 +31,26 @@ export default function SubGoalList(props) {
 
   };
 
-  const handleChange = (event) => {
-    setChecked(event.target.checked);
+  const handleChange = (checkboxIndex) => {
+    const updatedCheckedStatus = !props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].checked;
+    props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].checked = updatedCheckedStatus
+    const updated = props.projectManager.currentProject
+    const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
+    props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated))
   };
 
   useEffect(() => {
     handleCount()
   }, []);
 
+  let index = 0;
+
   return (
+    
     <List className={classes.root}>
       {props.goalDetails.subGoals.map((subgoal) => {
         const labelId = `checkbox-list-label-${subgoal}`;
+        
         // const isChecked = subgoal.checked ? true : false
         // const value = subgoal.checked ? 1 : 0
         
@@ -58,12 +66,11 @@ export default function SubGoalList(props) {
             >
             <ListItemIcon>
               <Checkbox
-                // value={value}
                 edge="start"
-                // checked={isChecked}
-                // checked={checked}
-                tabIndex={-1}
-                onChange={handleChange}
+                checked={subgoal.checked}
+                // index={++index}
+                 value={index++}
+                onChange={(e)=>handleChange(e.target.value)}
                 // disableRipple
                 inputProps={{ 'aria-labelledby': labelId }}
               />

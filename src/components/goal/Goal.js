@@ -33,9 +33,9 @@ export default function Goal(props) {
             about={props.goalDetails.goalDesc}
             details={
                 <SubGoalList
-                    goalDetails={props.goalDetails}
-                    index={props.index}
-                    // checkedBox={checkedBox}
+                  projectManager={props.projectManager}
+                  goalDetails={props.goalDetails}
+                  index={props.index}
                 />}
             />
     </div>
