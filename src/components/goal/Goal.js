@@ -25,13 +25,16 @@ export default function Goal(props) {
   return (
     <div className="goal-container">
         <GoalHeader 
+          projectManager={props.projectManager}
           goalDetails={props.goalDetails}
-          totalChecked={totalChecked}/>
+          totalChecked={totalChecked}
+          index={props.index}/>
         <AboutAccordion
             about={props.goalDetails.goalDesc}
             details={
                 <SubGoalList
                     goalDetails={props.goalDetails}
+                    index={props.index}
                     // checkedBox={checkedBox}
                 />}
             />

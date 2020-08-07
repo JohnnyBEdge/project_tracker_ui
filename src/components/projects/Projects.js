@@ -76,9 +76,14 @@ const Projects = (props) => {
     useEffect(() => {
         // fetchProjects();
       }, []);
-
+      let index = 0;
     const createGoal = projects[current].goals.map(goal => {
-        return <Goal goalDetails={goal}/>
+        
+        return <Goal 
+            goalDetails={goal} 
+            projectManager={projectManager}
+            index={index++}
+            />
     })
 
     return(

@@ -25,15 +25,12 @@ const AddSubgoalForm = (props) => {
     };
 
   function addSubgoal(){
-    let newSubgoal = {subGoal, checked}
-    // props.projectManager.currentProject.goals.push(newGoal);
-    // // const indx = props.projectManager.projects.findIndex(el => el.id === updatedProject.id);
-    // //     return events.splice(indx, 1, {_id:id, ...updatedEvent})
-    // let updated = props.projectManager.currentProject
-    // console.log("updated goals",updated)
-    // const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
-    // props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated))
-    // console.log()
+    let newSubgoal = {subGoal, checked};
+    props.projectManager.currentProject.goals[props.index].subGoals.push(newSubgoal);
+    console.log(props.projectManager.currentProject)
+    let updated = props.projectManager.currentProject
+    const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
+    props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated))
         toggleModal();
   };
 
@@ -48,7 +45,7 @@ const AddSubgoalForm = (props) => {
             onClose={toggleModal}
             aria-labelledby="simple-modal-title"
             aria-describedby="simple-modal-description"
-            className={classes.modal2}
+            className={classes.modal}
             >
 
             <div className={classes.paper}>
@@ -65,7 +62,7 @@ const AddSubgoalForm = (props) => {
                         onChange={({target}) => {
                             setSubGoal(target.value)
                         }}
-                        label="eventName" 
+                        label="subGoal" 
                         />
                 </FormControl>
             <br/>
@@ -74,7 +71,7 @@ const AddSubgoalForm = (props) => {
                     variant="contained"
                     color="primary"
                     startIcon={<AddIcon /> }
-                    // onClick={() => addGoal()}
+                    onClick={() => addSubgoal()}
                 >Add Subgoal
                 </Button>                                               
                 </div>
@@ -103,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1,0,1),
         width: "98%"
     },
-    modal2: {
+    modal: {
         marginTop: "-40px",
         // width: "98%",
         width: 400,
