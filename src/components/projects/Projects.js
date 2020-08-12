@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {Auth} from 'aws-amplify'
+import Amplify, { Auth, Storage } from 'aws-amplify';
 import '../projects/projects.css'
 import ProjectHeader from '../projectHeader/ProjectHeader';
 import Goal from '../goal/Goal'
@@ -12,19 +12,28 @@ const tempData = require('../../tempData.json');
 
 const Projects = (props) => {
     const [projects, setProjects] = useState(tempData);
+    const [projs, setProjs] = useState([]);
     // const [projects, setProjects] = useState(tempUserData);
     const [current, setCurrent] = useState(0);
 
+// const id = "11111"
     const fetchProjects = async () => {
+        // const params = {
+        //     'id': 11111
+        // };
+        const currentUser = await Auth.currentUserInfo()
+        const id = 11111
         try{
-            const res = await axios.get(`${config.api.invokeUrl}/projects`);
-            setProjects(res.data);
-            // console.log("Projects: ",res.data)
+            const res = await axios.get(`${config.api.invokeUrl}/users/${currentUser.attributes.sub}`
+            );
+            setProjs(res.data);
+            console.log("PROJJECTS from DB: ",res.data)
+            
         } catch(error){
             console.log("Error: ", error)
         };
     }
-    console.log("current project ",projects[current])
+    // console.log("current project ",projects[current])
 
     const deleteSubGoal = () => {
 
@@ -74,7 +83,7 @@ const Projects = (props) => {
     };
 
     useEffect(() => {
-        // fetchProjects();
+        fetchProjects();
       }, []);
       let index = 0;
     const createGoal = projects[current].goals.map(goal => {
