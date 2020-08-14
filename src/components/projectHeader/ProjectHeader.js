@@ -13,6 +13,13 @@ import AddIcon from '@material-ui/icons/Add';
 export default function ProjectHeader(props) {
   const classes = useStyles();
 
+//   const handleCount = () => {
+//     return props.projectManager.currentProject.subGoals.filter(subgoal => subgoal.checked).length;
+// };
+
+const completedGoals = props.projectManager.currentProject.goals.filter(goal => goal.goalCompleted).length;
+const totalGoals = props.projectManager.currentProject.goals.length;
+
   return (
     <div className={classes.root}>
       <div className="new-proj-btn">
@@ -29,7 +36,6 @@ export default function ProjectHeader(props) {
       <div className="progress-bar">
         <ProgressBar 
           projectManager={props.projectManager}
-          // currentProject={props.currentProject}
           />
           {/* <Tooltip title="Add New Goal" aria-label="add">
             <AddCircleIcon color="primary" fontSize="small"/>
@@ -37,7 +43,7 @@ export default function ProjectHeader(props) {
           <AddGoalForm 
             // currentProject={props.currentProject}
             projectManager={props.projectManager}/>
-          Total Goals: {props.projectManager.currentProject.goals.length}
+          Total Goals: {completedGoals}/{totalGoals}
       </div>
 
       <div className="about-accordion">

@@ -16,22 +16,34 @@ export default function GoalHeader(props) {
     return projectDetails.subGoals.filter(subgoal => subgoal.checked).length;
 };
 
+// const countCompleted = () => {
+//   return projectDetails)
+// }
+const completedGoals = props.projectManager.currentProject.goals.filter(goal => goal.goalCompleted).length;
+const totalGoals = props.projectManager.currentProject.goals.length;
+
   const classes = useStyles();
+
+  const percentProgress = handleCount()/props.goalDetails.subGoals.length *100
 
   return (
     <div className={classes.goalHeaderContainer}>
         <Checkbox
             color="default"
             inputProps={{ 'aria-label': 'secondary checkbox' }}
+            checked={percentProgress === 100 ? true : false}
         /> 
         <p>{props.goalDetails.goalName}</p>
         <AddSubgoalForm 
           projectManager={props.projectManager}
           index={props.index}
           />
+          <p>Goal status: {props.goalDetails.goalCompleted ? "completed" : "incomplete"}</p>
+          {/* <p>progress: {handleCount()/props.goalDetails.subGoals.length *100}</p> */}
         <ProgressBar 
         //total subgoals completed over total subgoals. *100 to get percent
-          progress={handleCount()/props.goalDetails.subGoals.length *100}/>
+          progress={percentProgress}/>
+          {/* subgoals completed over total */}
         <p>{handleCount()}/ {props.goalDetails.subGoals.length}</p>
         
     </div>

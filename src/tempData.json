@@ -1,49 +1,56 @@
-
 [
     {   
-        "projName": "Project Tracker",
+        "projName": "TempData",
         "projDesc": "A way to organize all the goals and subgoals that make up your project!",
         "goals": [
             {
-                "goalName": "project 1 goal 1",
-                "goalDesc": "goal1 description",
+                "goalName": "Progress Bar",
+                "goalDesc": "Progress bar will show the progress of the subgoals",
+                "goalCompleted": false,
                 "subGoals": [
                     {
-                        "subGoal": "Goal 1 Subgoal1",
+                        "subGoal": "bar color changes when complete",
+                        "checked": true
+                    },
+                    {
+                        "subGoal": "should show how many completed subgoals over total subgoals",
+                        "checked": true
+                    },
+                    {
+                        "subGoal": "should have pleasant UI",
                         "checked": false
+
                     },
                     {
-                        "subGoal": "Goal 1 Subgoal2",
-                        "checked": true
-                    },
-                    {
-                        "subGoal": "Goal 1 Subgoal3",
-                        "checked": true
+                        "subGoal": "should check itself when complete, unable to do manually",
+                        "checked": false
 
                     }
                 ]
             },
             {
-                "goalName": "project 1 goal 2",
-                "goalDesc": "goal 2 description",
+                "goalName": "Subgoals",
+                "goalDesc": "subgoals contain the minor tasks that make up the overall goal",
+                "goalCompleted": false,
                 "subGoals": [
                     {
-                        "subGoal": "Goal 2 Subgoal1",
-                        "checked": false
-                    },
-                    {
-                        "subGoal": "Goal 2 Subgoal2",
+                        "subGoal": "be able to add subgoals",
                         "checked": true
                     },
                     {
-                        "subGoal": "Goal 2 Subgoal3",
+                        "subGoal": "be able to delete subgoals",
                         "checked": false
+                    },
+                    {
+                        "subGoal": "un/checking updates progress bar",
+                        "checked": true
                     }
                 ]
             },
             {
                 "goalName": "project 1 goal 3",
                 "goalDesc": "goal 3 description",
+                "goalCompleted": false,
                 "subGoals": [
                     {
                         "subGoal": "Goal 3 Subgoal1",
@@ -53,20 +60,6 @@
                         "subGoal": "Goal 3 subgoal2",
                         "checked": true
                     }
-                ]
-            }
-        ]
-    },
-    {
-        "id": "22222",
-        "projName": "project2",
-        "projDesc": "project2 description project1-2 description project1-2 description project1-2 description project1-2 description project1-2 description ",
-        "goals": [
-            {
-                "goalName": "project 2 goal 1",
-                "goalDesc": "goal 2 description",
-                "subGoals": [
-                    {}, {}
                 ]
             }
         ]
