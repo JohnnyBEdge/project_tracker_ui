@@ -20,7 +20,7 @@ export default function SubGoalList(props) {
   const [checked, setChecked] = useState(true);
 
   const projectDetails = props.goalDetails;
-  console.log("project details",projectDetails.subGoals)
+
 
 // const count = projectDetails.subGoals.filter(subgoal => subgoal.checked).length;
 

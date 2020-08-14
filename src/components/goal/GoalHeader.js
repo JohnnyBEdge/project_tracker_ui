@@ -25,7 +25,6 @@ export default function GoalHeader(props) {
             inputProps={{ 'aria-label': 'secondary checkbox' }}
         /> 
         <p>{props.goalDetails.goalName}</p>
-        index: {props.index}
         <AddSubgoalForm 
           projectManager={props.projectManager}
           index={props.index}

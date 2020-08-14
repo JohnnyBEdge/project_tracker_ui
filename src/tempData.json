@@ -1,9 +1,8 @@
 
 [
     {   
-        "id": "11111",
-        "projName": "project1-1",
-        "projDesc": "project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description project1-1 description ",
+        "projName": "Project Tracker",
+        "projDesc": "A way to organize all the goals and subgoals that make up your project!",
         "goals": [
             {
                 "goalName": "project 1 goal 1",

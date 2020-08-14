@@ -3,10 +3,7 @@ import './App.css';
 import Projects from './components/projects/Projects';
 import Login from './components/auth/Login';
 import Register from './components/auth/Register';
-// import { useHistory } from "react-router-dom";
-import {Auth} from 'aws-amplify';
-
-
+import Auth from 'aws-amplify';
 import {
   BrowserRouter as Router,
   Switch,
@@ -14,12 +11,13 @@ import {
   Redirect
 } from "react-router-dom";
 
+
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [isAuthenticating, setIsAuthenticating] = useState(true); 
 
-  // let history = useHistory();
 
   const authProps = {
     isAuthenticated: isAuthenticated,
@@ -33,11 +31,11 @@ function App() {
       //retrieves session object from local storage and refreshes token if necessary
       const session = await Auth.currentSession();
       setIsAuthenticated(true);
-      console.log("session ",session);
+      // console.log("session ",session);
       //gets user object
       const user = await Auth.currentAuthenticatedUser();
       setUser(user);
-      console.log("clientID: ",user.pool.clientId)
+      // console.log("clientID: ",user.pool.clientId)
     } catch(error){
       console.log(error);
     }
