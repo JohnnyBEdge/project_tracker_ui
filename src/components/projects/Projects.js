@@ -17,23 +17,14 @@ const tempData = require('../../tempData.json');
 
 
 const Projects = (props) => {
-    // const [projects, setProjects] = useState([]);
-    const [projects, setProjects] = useState(tempData);
+    const [projects, setProjects] = useState([{}]);
     const [current, setCurrent] = useState(0);
 
-//     function getProjects(){
-//         setLoading(true)
-//         fetch(`${config.api.invokeUrl}/users/${11111}`)
-//            .then(res => res.json())
-//            .then(data => {
-//                console.log("PROJECTS", data.projects)
-//                setProjects(data.projects)
-//            })
-//            setLoading(false)
-//    };    
-
-console.log("PROJECTS",projects[current].goals)
-
+    async function getProjects(){
+        let response = await fetch(`${config.api.invokeUrl}/users/${11111}`);
+        let data = await response.json();
+        setProjects(data.projects)
+   };    
     const deleteSubGoal = () => {
 
     }
@@ -80,19 +71,30 @@ console.log("PROJECTS",projects[current].goals)
     };
 
     useEffect(() => {
-        // getProjects();
+        getProjects();
       }, []);
 
       let index = 0;
 
-    const createGoal = projects[current].goals.map(goal => {
+    const goals = projects[current].goals
+    const createGoal = goals ? goals.map(goal => {
         return <Goal 
             goalDetails={goal} 
             projectManager={projectManager}
             index={index++}
             />
     })
+    : 'loading'
 
+    const header = goals ? 
+        <ProjectHeader
+        // addProjectHandler={addProject} 
+        handleNext={handleNext}
+        handlePrev={handlePrev}
+        projectManager={projectManager}
+        goals={goals}
+        /> 
+    : ''
 
     return(
         <div className={"projects-container"}>
@@ -101,12 +103,14 @@ console.log("PROJECTS",projects[current].goals)
                     LogOut {props.auth.user.username}
                 </Button> */}
 
-            <ProjectHeader
+            {/* <ProjectHeader
                 // addProjectHandler={addProject} 
                 handleNext={handleNext}
                 handlePrev={handlePrev}
                 projectManager={projectManager}
-                />
+                goals={goals}
+                /> */}
+                {header}
                 {createGoal} 
         </div>
     )

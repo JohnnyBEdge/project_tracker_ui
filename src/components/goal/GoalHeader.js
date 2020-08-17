@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import ProjectTitle from '../projectTitle/ProjectTitle';
 import AboutAccordion from '../aboutProject/AboutAccordion';
 import AddSubgoalForm from '../goal/AddSubgoalForm';
@@ -10,10 +10,14 @@ import AddIcon from '@material-ui/icons/Add';
 
 
 export default function GoalHeader(props) {
+
+  const [goalComplete, setGoalComplete] = useState(false)
   const projectDetails = props.goalDetails;
+
 
   const handleCount = () => {
     return projectDetails.subGoals.filter(subgoal => subgoal.checked).length;
+    
 };
 
 // const countCompleted = () => {
@@ -25,6 +29,7 @@ const totalGoals = props.projectManager.currentProject.goals.length;
   const classes = useStyles();
 
   const percentProgress = handleCount()/props.goalDetails.subGoals.length *100
+
 
   return (
     <div className={classes.goalHeaderContainer}>
