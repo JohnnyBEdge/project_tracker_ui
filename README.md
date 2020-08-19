@@ -56,3 +56,5 @@ its seperate stylesheet and images
     ask user if they want to update changes made before leaving app/page
     - include update button
         - only appears when changes made
+- project changes are updated via PUT which is not RESTful
+    - update via PATCH, updating only what was changed
