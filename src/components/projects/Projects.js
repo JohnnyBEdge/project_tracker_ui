@@ -13,9 +13,6 @@ const config = require('../../config.json');
 const tempData = require('../../tempData.json');
 
 
-
-
-
 const Projects = (props) => {
     const [projects, setProjects] = useState([{}]);
     const [current, setCurrent] = useState(0);
@@ -24,16 +21,57 @@ const Projects = (props) => {
         let response = await fetch(`${config.api.invokeUrl}/users/${11111}`);
         let data = await response.json();
         setProjects(data.projects)
-   };    
-    const deleteSubGoal = () => {
+   };
 
+   async function updateProjects(){
+    try {
+      const params = {
+        "id": 11111,
+        "projects": projects
+      };
+     const res = await axios.put(`${config.api.invokeUrl}/users/${11111}`, params);
+     console.log("RES", res)
+    }catch (err) {
+        console.log("SENDING", projects)
+        console.log(`Error updating product: ${err}`);
     }
+  }
+// const updateProjects = () => {
+//     fetch(`${config.api.invokeUrl}/users/${11111}`, {
+//         method: "PUT",
+//         headers: {
+//             "Content-Type": "application/json"
+//         },
+//         body: projects
+//     })
+// };
+//    async function updateProjects(){
+//        try{
+//         //    const params = {
+//         //        "id": 11111,
+//         //        "projects": projects
+//         //    }
+//            await fetch(`${config.api.invokeUrl}/users/${11111}`, {
+//                method: "PUT",
+//                headers: {
+//                    "Content-Type": "application/json"
+//                },
+//                body: JSON.stringify(projects)
+//            });
+           
+//        } catch(err){
+//            console.log(`An error has occurred: ${err}`)
+//        }
+//    }
+    
+//    const deleteSubGoal = () => {}
     
     const projectManager = {
         currentProject: projects[current],
         projects: projects,
         setCurrent: setCurrent,
-        setProjects: setProjects
+        setProjects: setProjects,
+        updateProjects: updateProjects
     }
 
     let history = useHistory();
@@ -81,6 +119,7 @@ const Projects = (props) => {
         return <Goal 
             goalDetails={goal} 
             projectManager={projectManager}
+            key={index}
             index={index++}
             />
     })

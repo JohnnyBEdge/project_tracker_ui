@@ -30,7 +30,8 @@ const AddSubgoalForm = (props) => {
     console.log(props.projectManager.currentProject)
     let updated = props.projectManager.currentProject
     const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
-    props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated))
+    props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
+    console.log("ADDED SUBGOAL", props.projectManager.projects)
         toggleModal();
   };
 

@@ -16,6 +16,7 @@ export default function ProjectHeader(props) {
 //   const handleCount = () => {
 //     return props.projectManager.currentProject.subGoals.filter(subgoal => subgoal.checked).length;
 // };
+  // return projectDetails.subGoals.filter(subgoal => subgoal.checked).length;
 
 const completedGoals = props.projectManager.currentProject.goals.filter(goal => goal.goalCompleted).length;
 const totalGoals = props.projectManager.currentProject.goals.length;
@@ -28,7 +29,6 @@ const totalGoals = props.projectManager.currentProject.goals.length;
       <div className="title-container">
         <ProjectTitle 
           projectManager={props.projectManager}
-          // currentProject={props.currentProject}
           handleNext={props.handleNext}
           handlePrev={props.handlePrev}/>
       </div>

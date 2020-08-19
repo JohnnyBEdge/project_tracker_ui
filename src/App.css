@@ -1,5 +1,11 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:regular,bold,italic&subset=latin,latin-ext');
+
+
 .App {
   text-align: center;
+  font-family: 'Dosis', sans-serif;
+  font-size: 15px;
+  font-weight: 200;
 }
 
 .App-logo {

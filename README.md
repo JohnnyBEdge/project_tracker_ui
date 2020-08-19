@@ -21,6 +21,38 @@ its seperate stylesheet and images
     - DyanmoDB for database management
     - API Gateway to interact with Lambda functions
     - Lambda to handle CRUD
+    - IAM
+    - Cognito
 
 ## Data Schema
-  
+```
+ {
+    "id": "stringID",
+    "projects": [
+        {
+            "projName": "string",
+            "projDesc": "string",
+            "goals": [
+                {
+                    "goalCompleted": "boolean",
+                    "goalName": "string",
+                    "goalDesc": "string",
+                    "subGoals": [
+                        {
+                            "checked": "boolean",
+                            "subGoal": "string"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+## To-Do
+- Update project button? 
+    - instead of making several network calls for each box checked/unchecked, make changes local and 
+    ask user if they want to update changes made before leaving app/page
+    - include update button
+        - only appears when changes made

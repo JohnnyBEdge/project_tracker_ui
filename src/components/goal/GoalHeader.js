@@ -17,7 +17,6 @@ export default function GoalHeader(props) {
 
   const handleCount = () => {
     return projectDetails.subGoals.filter(subgoal => subgoal.checked).length;
-    
 };
 
 // const countCompleted = () => {
@@ -28,8 +27,9 @@ const totalGoals = props.projectManager.currentProject.goals.length;
 
   const classes = useStyles();
 
-  const percentProgress = handleCount()/props.goalDetails.subGoals.length *100
+  const percentProgress = handleCount()/props.goalDetails.subGoals.length *100;
 
+  console.log("GOALS",props.goalDetails)
 
   return (
     <div className={classes.goalHeaderContainer}>
@@ -44,7 +44,6 @@ const totalGoals = props.projectManager.currentProject.goals.length;
           index={props.index}
           />
           <p>Goal status: {props.goalDetails.goalCompleted ? "completed" : "incomplete"}</p>
-          {/* <p>progress: {handleCount()/props.goalDetails.subGoals.length *100}</p> */}
         <ProgressBar 
         //total subgoals completed over total subgoals. *100 to get percent
           progress={percentProgress}/>

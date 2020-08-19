@@ -5,6 +5,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
+import ButtonBase from '@material-ui/core/ButtonBase';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -36,8 +37,14 @@ export default function SubGoalList(props) {
     props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].checked = updatedCheckedStatus
     const updated = props.projectManager.currentProject
     const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
-    props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated))
+    props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
+    props.projectManager.updateProjects()
   };
+  
+
+  const deleteSubgoal = (idx) => {
+    alert("index: ", idx)
+  }
 
   useEffect(() => {
     handleCount()
@@ -49,20 +56,14 @@ export default function SubGoalList(props) {
     
     <List className={classes.root}>
       {props.goalDetails.subGoals.map((subgoal) => {
-        const labelId = `checkbox-list-label-${subgoal}`;
-        
-        // const isChecked = subgoal.checked ? true : false
-        // const value = subgoal.checked ? 1 : 0
-        
+        const labelId = `checkbox-list-label-${subgoal}`;     
         return (
           
           <ListItem 
-            key={subgoal} 
+            key={index} 
             role={undefined} 
             dense 
-            button 
-            
-            // onClick={() => handleToggle(value)}
+            button={true}
             >
             <ListItemIcon>
               <Checkbox
@@ -76,8 +77,9 @@ export default function SubGoalList(props) {
               />
             </ListItemIcon>
             <ListItemText id={labelId} primary={subgoal.subGoal} />
-            <button>Edit</button>
-            <button>Delete</button>
+            {/* <button 
+              onClick={() => deleteSubgoal()}>Delete</button> */}
+              <ButtonBase onClick={() => deleteSubgoal(index)}>Delete</ButtonBase>
           </ListItem>
         );
         

@@ -30,7 +30,7 @@ const AddGoalForm = (props) => {
     console.log("updated goals",updated)
     const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
     props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated))
-    console.log()
+    console.log("ADDED GOAL", props.projectManager.projects)
         toggleModal();
   };
 
