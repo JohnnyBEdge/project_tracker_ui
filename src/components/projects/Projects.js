@@ -23,46 +23,21 @@ const Projects = (props) => {
         setProjects(data.projects)
    };
 
+   const id = 11111;
    async function updateProjects(){
     try {
       const params = {
-        "id": 11111,
+        "id": JSON.stringify(id),
         "projects": projects
       };
-     const res = await axios.put(`${config.api.invokeUrl}/users/${11111}`, params);
-     console.log("RES", res)
+     await axios.put(`${config.api.invokeUrl}/users/${11111}`, params);
     }catch (err) {
         console.log("SENDING", projects)
         console.log(`Error updating product: ${err}`);
     }
   }
-// const updateProjects = () => {
-//     fetch(`${config.api.invokeUrl}/users/${11111}`, {
-//         method: "PUT",
-//         headers: {
-//             "Content-Type": "application/json"
-//         },
-//         body: projects
-//     })
-// };
-//    async function updateProjects(){
-//        try{
-//         //    const params = {
-//         //        "id": 11111,
-//         //        "projects": projects
-//         //    }
-//            await fetch(`${config.api.invokeUrl}/users/${11111}`, {
-//                method: "PUT",
-//                headers: {
-//                    "Content-Type": "application/json"
-//                },
-//                body: JSON.stringify(projects)
-//            });
-           
-//        } catch(err){
-//            console.log(`An error has occurred: ${err}`)
-//        }
-//    }
+
+
     
 //    const deleteSubGoal = () => {}
     
