@@ -18,20 +18,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SubGoalList(props) {
   const classes = useStyles();
-  const [checked, setChecked] = useState(true);
+  const [completed, setChecked] = useState(true);
+  // const [checked, setChecked] = useState(true);
 
   const projectDetails = props.goalDetails;
 
   const handleCount = () => {
-      return projectDetails.subGoals.filter(subgoal => subgoal.checked).length;
+      return projectDetails.subGoals.filter(subgoal => subgoal.completed).length;
 
   };
 
   const handleChange = (checkboxIndex) => {
     //gets the opposite of the current checked status, false if true, true if false
-    const updatedCheckedStatus = !props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].checked;
+    const updatedCheckedStatus = !props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].completed;
+    // const updatedCheckedStatus = !props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].checked;
     //updates the current checked status with the new one
-    props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].checked = updatedCheckedStatus
+    props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].completed = updatedCheckedStatus
+    // props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].checked = updatedCheckedStatus
     //adding update project to variable
     const updated = props.projectManager.currentProject
     //finding the index of the old project
@@ -82,7 +85,7 @@ export default function SubGoalList(props) {
             <ListItemIcon>
               <Checkbox
                 edge="start"
-                checked={subgoal.checked}
+                checked={subgoal.completed}
                 // index={++index}
                  value={index}
                 onChange={(e)=>handleChange(e.target.value)}

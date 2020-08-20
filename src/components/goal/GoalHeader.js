@@ -33,7 +33,7 @@ export default function GoalHeader(props) {
 
 
   const handleCount = () => {
-    return projectDetails.subGoals.filter(subgoal => subgoal.checked).length;
+    return projectDetails.subGoals.filter(subgoal => subgoal.completed).length;
 };
 
 // const countCompleted = () => {

@@ -16,7 +16,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 const AddSubgoalForm = (props) => {
 
     const [subGoal, setSubGoal] = useState('');
-    const [checked, setChecked] = useState(false);
+    const [completed, setCompleted] = useState(false);
     // const [subGoals] = useState([]);
     const [open, setOpen] = useState(false); 
 
@@ -25,7 +25,7 @@ const AddSubgoalForm = (props) => {
     };
 
   function addSubgoal(){
-    let newSubgoal = {subGoal, checked};
+    let newSubgoal = {subGoal, completed};
     props.projectManager.currentProject.goals[props.index].subGoals.push(newSubgoal);
     console.log(props.projectManager.currentProject)
     let updated = props.projectManager.currentProject
