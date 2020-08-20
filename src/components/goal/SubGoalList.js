@@ -22,40 +22,54 @@ export default function SubGoalList(props) {
 
   const projectDetails = props.goalDetails;
 
-
-// const count = projectDetails.subGoals.filter(subgoal => subgoal.checked).length;
-
-
-
   const handleCount = () => {
       return projectDetails.subGoals.filter(subgoal => subgoal.checked).length;
 
   };
 
   const handleChange = (checkboxIndex) => {
+    //gets the opposite of the current checked status, false if true, true if false
     const updatedCheckedStatus = !props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].checked;
+    //updates the current checked status with the new one
     props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].checked = updatedCheckedStatus
+    //adding update project to variable
     const updated = props.projectManager.currentProject
+    //finding the index of the old project
     const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
+    //replacing old with new
     props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
+    //makes network call to update DB
     props.projectManager.updateProjects()
   };
   
-
-  const deleteSubgoal = (idx) => {
-    alert("index: ", idx)
+  
+  
+  async function deleteSubgoal(idx){
+    console.log("CURR", props.projectManager.currentProject)
+    if(window.confirm("Are you sure you want to delete this subgoal?")){
+      //removes the subgoal
+    await props.projectManager.currentProject.goals[props.index].subGoals.splice(idx,1);
+    console.log("CURR after delete", props.projectManager.currentProject)
+    //adding update project to variable
+    const updated = props.projectManager.currentProject
+    //finding the index of the old project
+    const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
+    //replacing old with new
+    await props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
+    //makes network call to update DB
+    await props.projectManager.updateProjects()
+    }
+    
   }
 
   useEffect(() => {
     handleCount()
   }, []);
 
-  let index = 0;
-
   return (
     
     <List className={classes.root}>
-      {props.goalDetails.subGoals.map((subgoal) => {
+      {props.goalDetails.subGoals.map((subgoal, index) => {
         const labelId = `checkbox-list-label-${subgoal}`;     
         return (
           
@@ -70,16 +84,14 @@ export default function SubGoalList(props) {
                 edge="start"
                 checked={subgoal.checked}
                 // index={++index}
-                 value={index++}
+                 value={index}
                 onChange={(e)=>handleChange(e.target.value)}
                 // disableRipple
                 inputProps={{ 'aria-labelledby': labelId }}
               />
             </ListItemIcon>
             <ListItemText id={labelId} primary={subgoal.subGoal} />
-            {/* <button 
-              onClick={() => deleteSubgoal()}>Delete</button> */}
-              <ButtonBase onClick={() => deleteSubgoal(index)}>Delete</ButtonBase>
+              <button onClick={() => deleteSubgoal(index)}>Delete</button>
           </ListItem>
         );
         

@@ -23,6 +23,7 @@ const Projects = (props) => {
         setProjects(data.projects)
    };
 
+
    const id = 11111;
    async function updateProjects(){
     try {
@@ -36,10 +37,6 @@ const Projects = (props) => {
         console.log(`Error updating product: ${err}`);
     }
   }
-
-
-    
-//    const deleteSubGoal = () => {}
     
     const projectManager = {
         currentProject: projects[current],
@@ -88,8 +85,8 @@ const Projects = (props) => {
       }, []);
 
       let index = 0;
-
-    const goals = projects[current].goals
+    
+    const goals = projects[current].goals;
     const createGoal = goals ? goals.map(goal => {
         return <Goal 
             goalDetails={goal} 
@@ -98,7 +95,7 @@ const Projects = (props) => {
             index={index++}
             />
     })
-    : 'loading'
+    : 'Loading...'
 
     const header = goals ? 
         <ProjectHeader

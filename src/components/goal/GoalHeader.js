@@ -29,8 +29,6 @@ const totalGoals = props.projectManager.currentProject.goals.length;
 
   const percentProgress = handleCount()/props.goalDetails.subGoals.length *100;
 
-  console.log("GOALS",props.goalDetails)
-
   return (
     <div className={classes.goalHeaderContainer}>
         <Checkbox
