@@ -15,9 +15,10 @@ import SubGoalList from './SubGoalList';
 export default function Goal(props) {
   const [numChecked, setNumChecked] = useState(0)
 
-  const totalChecked = () => {
+  // const totalChecked = () => {
       
-  }
+  // }
+
 
 
   const classes = useStyles();
@@ -27,7 +28,7 @@ export default function Goal(props) {
         <GoalHeader 
           projectManager={props.projectManager}
           goalDetails={props.goalDetails}
-          totalChecked={totalChecked}
+          // totalChecked={totalChecked}
           index={props.index}/>
         <AboutAccordion
             about={props.goalDetails.goalDesc}

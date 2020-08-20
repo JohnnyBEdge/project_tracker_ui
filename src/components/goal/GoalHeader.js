@@ -4,6 +4,7 @@ import AboutAccordion from '../aboutProject/AboutAccordion';
 import AddSubgoalForm from '../goal/AddSubgoalForm';
 import ProgressBar from '../progressBar/ProgressBar';
 import Checkbox from '@material-ui/core/Checkbox';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
@@ -13,6 +14,22 @@ export default function GoalHeader(props) {
 
   const [goalComplete, setGoalComplete] = useState(false)
   const projectDetails = props.goalDetails;
+
+  async function deleteGoal(idx){
+    if(window.confirm("Are you sure you want to delete this subgoal?")){
+    //removes the goal from currentproject list
+    await props.projectManager.currentProject.goals.splice(idx,1);
+    //adding update project to variable
+    const updated = props.projectManager.currentProject
+    //finding the index of the old project
+    const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
+    //replacing old with new
+    await props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
+    //makes network call to update DB
+    await props.projectManager.updateProjects()
+    }
+  }
+
 
 
   const handleCount = () => {
@@ -41,7 +58,8 @@ const totalGoals = props.projectManager.currentProject.goals.length;
           projectManager={props.projectManager}
           index={props.index}
           />
-          <p>Goal status: {props.goalDetails.goalCompleted ? "completed" : "incomplete"}</p>
+          <HighlightOffIcon
+            onClick={() => deleteGoal(props.index)}/>
         <ProgressBar 
         //total subgoals completed over total subgoals. *100 to get percent
           progress={percentProgress}/>
