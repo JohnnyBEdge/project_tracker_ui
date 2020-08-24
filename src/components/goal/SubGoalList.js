@@ -6,6 +6,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -54,11 +55,11 @@ export default function SubGoalList(props) {
     await props.projectManager.currentProject.goals[props.index].subGoals.splice(idx,1);
     console.log("CURR after delete", props.projectManager.currentProject)
     //adding update project to variable
-    const updated = props.projectManager.currentProject
+    // const updated = props.projectManager.currentProject
     //finding the index of the old project
-    const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
+    // const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
     //replacing old with new
-    await props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
+    // await props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
     //makes network call to update DB
     await props.projectManager.updateProjects()
     }
@@ -94,7 +95,11 @@ export default function SubGoalList(props) {
               />
             </ListItemIcon>
             <ListItemText id={labelId} primary={subgoal.subGoal} />
-              <button onClick={() => deleteSubgoal(index)}>Delete</button>
+              <CloseIcon 
+                onClick={() => deleteSubgoal(index)}
+                color="secondary"
+                fontSize="small"
+                />
           </ListItem>
         );
         

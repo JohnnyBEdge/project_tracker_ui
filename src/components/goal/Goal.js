@@ -15,12 +15,6 @@ import SubGoalList from './SubGoalList';
 export default function Goal(props) {
   const [numChecked, setNumChecked] = useState(0)
 
-  // const totalChecked = () => {
-      
-  // }
-
-
-
   const classes = useStyles();
 
   return (

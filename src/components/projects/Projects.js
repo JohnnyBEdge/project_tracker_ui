@@ -17,12 +17,15 @@ const Projects = (props) => {
     const [projects, setProjects] = useState([{}]);
     const [current, setCurrent] = useState(0);
 
+
     async function getProjects(){
         let response = await fetch(`${config.api.invokeUrl}/users/${11111}`);
         let data = await response.json();
         setProjects(data.projects)
    };
 
+//    console.log("current project ",current, projects[current] )
+//    console.log("all projects ",projects)
 
    const id = 11111;
    async function updateProjects(){
@@ -33,11 +36,10 @@ const Projects = (props) => {
       };
      await axios.put(`${config.api.invokeUrl}/users/${11111}`, params);
     }catch (err) {
-        console.log("SENDING", projects)
         console.log(`Error updating product: ${err}`);
     }
   }
-    
+
     const projectManager = {
         currentProject: projects[current],
         projects: projects,

@@ -24,16 +24,25 @@ const AddSubgoalForm = (props) => {
         setOpen(!open)
     };
 
-  function addSubgoal(){
+function addSubgoal(){
+    //create subgoal object
     let newSubgoal = {subGoal, completed};
+    //add new subgoal to subgoals array
+    
     props.projectManager.currentProject.goals[props.index].subGoals.push(newSubgoal);
-    console.log(props.projectManager.currentProject)
-    let updated = props.projectManager.currentProject
-    const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
-    props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
+     //attach updated project to variable
+    // let updated = props.projectManager.currentProject
+
+    //find matching index 
+    // const index = props.projectManager.projects.findIndex(proj => console.log("proj id",proj));
+    // const index = props.projectManager.projects.findIndex(proj => proj.projName === updated.projName);
+    // console.log("replaced", props.projectManager.projects.splice(index, 1, updated))
+    // props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
     props.projectManager.updateProjects()
-        toggleModal();
+    console.log("UPDATED",props.projectManager.projects)
+    toggleModal();
   };
+  
 
   const classes = useStyles();
     return (
