@@ -5,9 +5,10 @@ import ProgressBar from '../progressBar/ProgressBar';
 import AddGoalForm from '../goal/AddGoalForm';
 
 import { makeStyles } from '@material-ui/core/styles';
-import AddIcon from '@material-ui/icons/Add';
+import Button from '@material-ui/core/Button';
+
 // import AddCircleIcon from '@material-ui/icons/AddCircle';
-// import Tooltip from '@material-ui/core/Tooltip';
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 export default function ProjectHeader(props) {
@@ -24,32 +25,35 @@ const totalGoals = props.projectManager.currentProject.goals.length;
   return (
     <div className={classes.root}>
       <div className="new-proj-btn">
-        <AddIcon />
+        <Button 
+          className={classes.addProjBtn}
+          variant="outlined"
+          fullWidth="true">
+            
+            + New Project
+        </Button>
       </div>
-      <div className="title-container">
+      <div>
         <ProjectTitle 
           projectManager={props.projectManager}
           handleNext={props.handleNext}
           handlePrev={props.handlePrev}/>
       </div>
 
-      <div className="progress-bar">
+      <div className={classes.progressBar}>
+        <Tooltip title="Add New Goal" aria-label="add">
+          <AddGoalForm 
+              projectManager={props.projectManager}/>
+          </Tooltip>
         <ProgressBar 
           projectManager={props.projectManager}
           />
-          {/* <Tooltip title="Add New Goal" aria-label="add">
-            <AddCircleIcon color="primary" fontSize="small"/>
-          </Tooltip> */}
-          <AddGoalForm 
-            // currentProject={props.currentProject}
-            projectManager={props.projectManager}/>
-          Total Goals: {completedGoals}/{totalGoals}
       </div>
+      <p className={classes.completed}>Goals Completed: {completedGoals}/{totalGoals}</p>
 
       <div className="about-accordion">
         <AboutAccordion 
-          // currentProject={props.currentProject}
-          about={"About"}
+          about={"Project Details"}
           details={props.projectManager.currentProject.projDesc}
           
           />
@@ -58,12 +62,17 @@ const totalGoals = props.projectManager.currentProject.goals.length;
   );
 };
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
+const useStyles = makeStyles(() => ({
+  addProjBtn: {
+    fontSize: 15,
+    backgroundColor: "#545352",
+    color: "white"
   },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    fontWeight: theme.typography.fontWeightRegular,
+  progressBar: {
+    display: "flex"
   },
+  completed: {
+    fontSize: 13,
+    marginTop: -10
+  }
 }));

@@ -38,9 +38,13 @@ const AddGoalForm = (props) => {
     return (
         <div id="add_goal_form_container">
         <Tooltip title="Add New Goal" aria-label="add">
-            <AddCircleIcon color="primary" fontSize="small" onClick={toggleModal}/>
+            <AddCircleIcon 
+                className={classes.addGoalBtn}
+                color="primary" 
+                fontSize="small" 
+                onClick={toggleModal}/>
           </Tooltip>
-                       <Modal
+            <Modal
                 open={open}
                 onClose={toggleModal}
                 aria-labelledby="simple-modal-title"
@@ -112,9 +116,9 @@ const useStyles = makeStyles((theme) => ({
       top: 100,
     //   left: '37%',
     },
-    button: {
-        margin: theme.spacing(2, 0, 2),
-      },
+    // button: {
+    //     margin: theme.spacing(2, 0, 2),
+    //   },
     input: {
         margin: theme.spacing(1,0,1),
         width: "98%"
@@ -134,6 +138,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "15px"
         // & :hover {
         //     background-color: "#5469d4"
+    },
+    addGoalBtn:{ 
+        paddingLeft: 15,
+        marginTop: 10
     } 
   }));
 

@@ -116,13 +116,6 @@ const Projects = (props) => {
                     LogOut {props.auth.user.username}
                 </Button> */}
 
-            {/* <ProjectHeader
-                // addProjectHandler={addProject} 
-                handleNext={handleNext}
-                handlePrev={handlePrev}
-                projectManager={projectManager}
-                goals={goals}
-                /> */}
                 {header}
                 {createGoal} 
         </div>

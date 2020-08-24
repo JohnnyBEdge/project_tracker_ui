@@ -18,7 +18,7 @@ export default function Goal(props) {
   const classes = useStyles();
 
   return (
-    <div className="goal-container">
+    <div className={classes.container}>
         <GoalHeader 
           projectManager={props.projectManager}
           goalDetails={props.goalDetails}
@@ -45,4 +45,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
   },
+  container: {
+    display: "flex",
+    flexDirection: "column"
+  }
 }));

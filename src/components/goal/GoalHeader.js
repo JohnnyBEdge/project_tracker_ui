@@ -8,6 +8,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 import { makeStyles } from '@material-ui/core/styles';
 import AddIcon from '@material-ui/icons/Add';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 export default function GoalHeader(props) {
@@ -53,13 +54,15 @@ const totalGoals = props.projectManager.currentProject.goals.length;
             inputProps={{ 'aria-label': 'secondary checkbox' }}
             checked={percentProgress === 100 ? true : false}
         /> 
-        <p>{props.goalDetails.goalName}</p>
-        <AddSubgoalForm 
+        <p className={classes.goalTitle}>{props.goalDetails.goalName}</p>
+        {/* <AddSubgoalForm 
           projectManager={props.projectManager}
           index={props.index}
-          />
-          <HighlightOffIcon
-            onClick={() => deleteGoal(props.index)}/>
+          /> */}
+          <CloseIcon
+            onClick={() => deleteGoal(props.index)}
+            color="secondary"
+            size="small"/>
         <ProgressBar 
         //total subgoals completed over total subgoals. *100 to get percent
           progress={percentProgress}/>
@@ -73,6 +76,13 @@ const totalGoals = props.projectManager.currentProject.goals.length;
 const useStyles = makeStyles((theme) => ({
   goalHeaderContainer: {
       display: "flex",
-      flexWrap: "wrap"
+      flexWrap: "wrap",
+      justifyContent: "space-between",
+      margin: 10,
+      backgroundColor: "#F2F2F2"
+  },
+  goalTitle: {
+    fontSize: 18,
+    fontWeight: 500,
   }
 }));
