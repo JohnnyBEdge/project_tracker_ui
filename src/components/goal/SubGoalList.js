@@ -53,12 +53,12 @@ export default function SubGoalList(props) {
     if(window.confirm("Are you sure you want to delete this subgoal?")){
       //removes the subgoal
     await props.projectManager.currentProject.goals[props.index].subGoals.splice(idx,1);
-    console.log("CURR after delete", props.projectManager.currentProject)
     //adding update project to variable
-    // const updated = props.projectManager.currentProject
+    const updated = props.projectManager.currentProject
     //finding the index of the old project
-    // const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
+    const index = props.projectManager.projects.findIndex(proj => proj.projName === updated.projName);
     //replacing old with new
+    await props.projectManager.projects.splice(index, 1, updated);
     // await props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
     //makes network call to update DB
     await props.projectManager.updateProjects()

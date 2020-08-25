@@ -28,6 +28,7 @@ const Projects = (props) => {
 //    console.log("all projects ",projects)
 
    const id = 11111;
+
    async function updateProjects(){
     try {
       const params = {
@@ -35,14 +36,19 @@ const Projects = (props) => {
         "projects": projects
       };
      await axios.put(`${config.api.invokeUrl}/users/${11111}`, params);
+    //  await getProjects();
     }catch (err) {
         console.log(`Error updating product: ${err}`);
     }
   }
 
+    let currentProject = projects[current]
+
     const projectManager = {
-        currentProject: projects[current],
+        // currentProject: projects[current],
+        currentProject: currentProject,
         projects: projects,
+        current: current,
         setCurrent: setCurrent,
         setProjects: setProjects,
         updateProjects: updateProjects
@@ -64,22 +70,23 @@ const Projects = (props) => {
     const addProject = (newProject) => {
         setProjects(projects => [...projects, newProject]);
     };
-
+    console.log("current: ",current)
     const handleNext = () => {
-        // if(current === projs.length-1){
+        console.log("projects length", projects.length)
         if(current === projects.length-1){
             setCurrent(0)
         } else {
             setCurrent(current + 1)
         };
+        
     };
     const handlePrev = () => {
         if(current === 0){
-            // setCurrent(projs.length - 1)
             setCurrent(projects.length - 1)
         } else {
             setCurrent(current - 1)
         };
+        console.log("current: ",current)
     };
 
     useEffect(() => {

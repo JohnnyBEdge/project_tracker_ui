@@ -19,13 +19,14 @@ export default function GoalHeader(props) {
   async function deleteGoal(idx){
     if(window.confirm("Are you sure you want to delete this subgoal?")){
     //removes the goal from currentproject list
-    await props.projectManager.currentProject.goals.splice(idx,1);
+    await props.projectManager.projects[props.projectManager.current].goals.splice(idx,1);
+    // await props.projectManager.currentProject.goals.splice(idx,1);
     //adding update project to variable
     const updated = props.projectManager.currentProject
-    //finding the index of the old project
+    // //finding the index of the old project
     const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
-    //replacing old with new
-    await props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
+    // //replacing old with new
+    props.projectManager.projects.splice(index, 1, updated);
     //makes network call to update DB
     await props.projectManager.updateProjects()
     }
@@ -55,10 +56,10 @@ const totalGoals = props.projectManager.currentProject.goals.length;
             checked={percentProgress === 100 ? true : false}
         /> 
         <p className={classes.goalTitle}>{props.goalDetails.goalName}</p>
-        {/* <AddSubgoalForm 
+        <AddSubgoalForm 
           projectManager={props.projectManager}
           index={props.index}
-          /> */}
+          />
           <CloseIcon
             onClick={() => deleteGoal(props.index)}
             color="secondary"

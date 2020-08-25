@@ -19,18 +19,29 @@ const AddGoalForm = (props) => {
     const [subGoals] = useState([]);
     const [open, setOpen] = useState(false); 
 
+    let projects = props.projectManager.projects;
+
     const toggleModal = () => {
         setOpen(!open)
     };
 
-  function addGoal(){
+  async function addGoal(){
+      //creates new goal
     let newGoal = {goalName, goalDesc, subGoals}
-    props.projectManager.currentProject.goals.push(newGoal);
+    //adds new goal to current projects goal list
+    await props.projectManager.currentProject.goals.push(newGoal);
+    //puts updated projects into variable
     let updated = props.projectManager.currentProject
-    const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
-    props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated))
+    //finds old project by its name and returns the index
+    const index = projects.findIndex(proj => proj.projName === updated.projName);
+    console.log("PROJECT INDEX: ", index)
+    //replaces old project copy with updated
+    await projects.splice(index, 1, updated);
+    
+    await props.projectManager.setProjects(projects)
+
     //updates DB
-    props.projectManager.updateProjects()
+    await props.projectManager.updateProjects()
         toggleModal();
   };
 
