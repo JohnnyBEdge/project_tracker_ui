@@ -58,7 +58,7 @@ const totalGoals = props.projectManager.currentProject.goals.length;
         <CloseIcon
           className={classes.deleteBtn}
           onClick={() => deleteGoal(props.index)}
-          style={{ color: '#f70505' }}
+          style={{ color: '#e02f14' }}
           size="small"/>  
       </div>
       <div className={classes.goalSection}>  

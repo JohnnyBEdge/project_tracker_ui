@@ -8,15 +8,6 @@ import Checkbox from '@material-ui/core/Checkbox';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import CloseIcon from '@material-ui/icons/Close';
 
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    maxWidth: 360,
-    backgroundColor: theme.palette.background.paper,
-  },
-}));
-
 export default function SubGoalList(props) {
   const classes = useStyles();
   const [completed, setChecked] = useState(true);
@@ -32,14 +23,12 @@ export default function SubGoalList(props) {
   const handleChange = (checkboxIndex) => {
     //gets the opposite of the current checked status, false if true, true if false
     const updatedCheckedStatus = !props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].completed;
-    // const updatedCheckedStatus = !props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].checked;
     //updates the current checked status with the new one
     props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].completed = updatedCheckedStatus
-    // props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].checked = updatedCheckedStatus
     //adding update project to variable
     const updated = props.projectManager.currentProject
     //finding the index of the old project
-    const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
+    const index = props.projectManager.projects.findIndex(proj => proj.projName === updated.projName);
     //replacing old with new
     props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
     //makes network call to update DB
@@ -72,20 +61,23 @@ export default function SubGoalList(props) {
   return (
     
     <List className={classes.root}>
+      <p className={classes.subTitle}>Subgoals:</p>
       {props.goalDetails.subGoals.map((subgoal, index) => {
         const labelId = `checkbox-list-label-${subgoal}`;     
         return (
           
-          <ListItem 
+          <ListItem
             key={index} 
             role={undefined} 
             dense 
             button={true}
             >
+              
             <ListItemIcon>
               <Checkbox
                 edge="start"
                 checked={subgoal.completed}
+                color="default"
                 // index={++index}
                  value={index}
                 onChange={(e)=>handleChange(e.target.value)}
@@ -96,7 +88,7 @@ export default function SubGoalList(props) {
             <ListItemText id={labelId} primary={subgoal.subGoal} />
               <CloseIcon 
                 onClick={() => deleteSubgoal(index)}
-                color="secondary"
+                style={{ color: '#e02f14' }}
                 fontSize="small"
                 />
           </ListItem>
@@ -108,3 +100,15 @@ export default function SubGoalList(props) {
 
   );
 }
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    minWidth: 335,
+    backgroundColor: theme.palette.background.paper,
+  },
+  subTitle: {
+    fontSize: 15,
+    fontWeight: "bold",
+    padding: 0
+  }
+}));
