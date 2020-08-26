@@ -37,8 +37,7 @@ const AddGoalForm = (props) => {
     console.log("PROJECT INDEX: ", index)
     //replaces old project copy with updated
     await projects.splice(index, 1, updated);
-    await props.projectManager.setProjects(projects)
-    // await props.projectManager.setProjects(projects)
+    await props.projectManager.setProjects([...props.projectManager.projects])
 
     //updates DB
     await props.projectManager.updateProjects()

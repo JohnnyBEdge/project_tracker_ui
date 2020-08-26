@@ -26,6 +26,7 @@ export default function GoalHeader(props) {
     const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
     // //replacing old with new
     await props.projectManager.projects.splice(index, 1, updated);
+    await props.projectManager.setProjects([...props.projectManager.projects])
     //makes network call to update DB
     await props.projectManager.updateProjects()
     }
@@ -87,7 +88,7 @@ const useStyles = makeStyles((theme) => ({
   },
   goalTitle: {
     fontSize: 18,
-    fontWeight: 500,
+    fontWeight: 500
   },
   goalSection: {
     display: "flex",

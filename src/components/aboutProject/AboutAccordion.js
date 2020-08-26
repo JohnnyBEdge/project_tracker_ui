@@ -44,6 +44,7 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
-    margin: "0 auto"
+    margin: "0 auto",
+    fontSize: 14
   },
 }));

@@ -31,12 +31,13 @@ async function addSubgoal(){
     await props.projectManager.currentProject.goals[props.index].subGoals.push(newSubgoal);
     
      //attach updated project to variable
-    // let updated = props.projectManager.currentProject
+    let updated = props.projectManager.currentProject
 
     // //find matching index 
-    // const index = props.projectManager.projects.findIndex(proj => proj.projName === updated.projName);
+    const index = props.projectManager.projects.findIndex(proj => proj.projName === updated.projName);
 
-    // await props.projectManager.projects.splice(index, 1, updated);
+    await props.projectManager.projects.splice(index, 1, updated);
+    await props.projectManager.setProjects([...props.projectManager.projects])
     //updates DB
     await props.projectManager.updateProjects()
     toggleModal();

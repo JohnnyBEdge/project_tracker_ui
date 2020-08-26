@@ -48,6 +48,7 @@ export default function SubGoalList(props) {
     const index = props.projectManager.projects.findIndex(proj => proj.projName === updated.projName);
     //replacing old with new
     await props.projectManager.projects.splice(index, 1, updated);
+    await props.projectManager.setProjects([...props.projectManager.projects])
     //makes network call to update DB
     await props.projectManager.updateProjects()
     }
@@ -85,7 +86,9 @@ export default function SubGoalList(props) {
                 inputProps={{ 'aria-labelledby': labelId }}
               />
             </ListItemIcon>
-            <ListItemText id={labelId} primary={subgoal.subGoal} />
+            <ListItemText
+              id={labelId} 
+              primary={subgoal.subGoal} />
               <CloseIcon 
                 onClick={() => deleteSubgoal(index)}
                 style={{ color: '#e02f14' }}
