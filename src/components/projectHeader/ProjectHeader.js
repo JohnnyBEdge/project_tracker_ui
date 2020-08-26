@@ -3,6 +3,8 @@ import ProjectTitle from '../projectTitle/ProjectTitle';
 import AboutAccordion from '../aboutProject/AboutAccordion';
 import ProgressBar from '../progressBar/ProgressBar';
 import AddGoalForm from '../goal/AddGoalForm';
+import LogoutBtn from '../buttons/LogoutBtn';
+
 
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
@@ -24,14 +26,16 @@ const totalGoals = props.projectManager.currentProject.goals.length;
 
   return (
     <div className={classes.root}>
-      <div className="new-proj-btn">
+      <div className={classes.btnContainer}>
         <Button 
           className={classes.addProjBtn}
-          variant="outlined"
+          // variant="outlined"
           fullWidth="true">
             
             + New Project
         </Button>
+        <LogoutBtn
+          auth={props.auth}/>
       </div>
       <div>
         <ProjectTitle 
@@ -65,7 +69,6 @@ const totalGoals = props.projectManager.currentProject.goals.length;
 const useStyles = makeStyles(() => ({
   addProjBtn: {
     fontSize: 15,
-    backgroundColor: "#545352",
     color: "white"
   },
   progressBar: {
@@ -74,5 +77,11 @@ const useStyles = makeStyles(() => ({
   completed: {
     fontSize: 13,
     marginTop: -10
+  },
+  btnContainer:{
+    backgroundColor: "#545352",
+    color: "white",
+    display: "flex",
+    justifyContent: "space-between"
   }
 }));

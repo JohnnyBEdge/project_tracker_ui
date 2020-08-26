@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Amplify, { Auth, Storage } from 'aws-amplify';
 import '../projects/projects.css'
 import ProjectHeader from '../projectHeader/ProjectHeader';
+
 import Goal from '../goal/Goal'
 import Button from '@material-ui/core/Button';
 import { useHistory } from "react-router-dom";
@@ -110,6 +111,7 @@ const Projects = (props) => {
         handlePrev={handlePrev}
         projectManager={projectManager}
         goals={goals}
+        auth={props.auth}
         /> 
     : ''
 
@@ -117,7 +119,7 @@ const Projects = (props) => {
         <div className={"projects-container"}>
                 {/* <Button
                     onClick={handleLogout}>
-                    LogOut {props.auth.user.username}
+                    LogOut 
                 </Button> */}
 
                 {header}
