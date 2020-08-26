@@ -42,11 +42,8 @@ const Projects = (props) => {
     }
   }
 
-    let currentProject = projects[current]
-
     const projectManager = {
-        // currentProject: projects[current],
-        currentProject: currentProject,
+        currentProject: projects[current],
         projects: projects,
         current: current,
         setCurrent: setCurrent,
@@ -70,7 +67,7 @@ const Projects = (props) => {
     const addProject = (newProject) => {
         setProjects(projects => [...projects, newProject]);
     };
-    console.log("current: ",current)
+
     const handleNext = () => {
         console.log("projects length", projects.length)
         if(current === projects.length-1){
@@ -104,7 +101,7 @@ const Projects = (props) => {
             index={index++}
             />
     })
-    : 'Loading...'
+    : <CircularProgress />
 
     const header = goals ? 
         <ProjectHeader

@@ -9,7 +9,7 @@ const BorderLinearProgress = withStyles((theme) => ({
   root: {
     height: 12,
     borderRadius: 10,
-    width: '80%',
+    width: '90%',
     margin: '0 auto',
     border: 'solid black 1px'
   },
@@ -22,31 +22,25 @@ const BorderLinearProgress = withStyles((theme) => ({
   },
 }))(LinearProgress);
 
-
-
-
-  const useStyles = makeStyles({
-    root: {
-      flexGrow: 1,
-      width: "80%",
-      margin: "0 auto",
-      padding: 15
-    },
-    // bar: {
-    //   backgroundColor: props.progress < 30
-    //   ? '#4caf50' //green
-    //   : '#33bfff', //blue
-    //   height: 10,
-    //   borderRadius: 5,
-
-    // }
-  });
-
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <BorderLinearProgress variant="determinate" value={props.progress} /> 
+      <BorderLinearProgress 
+        className={classes.bar}
+        variant="determinate" 
+        value={props.progress} />
     </div>
   );
 }
+
+const useStyles = makeStyles({
+  root: {
+    // display: "flex",
+    // justifyContent: "space-evenly",
+    flexGrow: 1,
+    // width: "100%",
+    // margin: "0 auto",
+    padding: 15
+  }
+});

@@ -29,14 +29,14 @@ async function addSubgoal(){
     let newSubgoal = {subGoal, completed};
     //add new subgoal to subgoals array
     await props.projectManager.currentProject.goals[props.index].subGoals.push(newSubgoal);
+    
      //attach updated project to variable
-    let updated = props.projectManager.currentProject
+    // let updated = props.projectManager.currentProject
 
-    //find matching index 
-    const index = props.projectManager.projects.findIndex(proj => proj.projName === updated.projName);
+    // //find matching index 
+    // const index = props.projectManager.projects.findIndex(proj => proj.projName === updated.projName);
 
-    await props.projectManager.projects.splice(index, 1, updated);
-    // await props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
+    // await props.projectManager.projects.splice(index, 1, updated);
     //updates DB
     await props.projectManager.updateProjects()
     toggleModal();
@@ -47,7 +47,12 @@ async function addSubgoal(){
     return (
         <div id="add_goal_form_container">
         <Tooltip title="Add New Goal" aria-label="add">
-            <AddCircleIcon color="primary" fontSize="small" onClick={toggleModal}/>
+            <AddCircleIcon 
+                className={classes.addBtn}
+                style={{ color: '#00B0FE' }}
+                fontSize="small"
+                variant="outlined" 
+                onClick={toggleModal}/>
           </Tooltip>
         <Modal
             open={open}
@@ -125,7 +130,10 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "15px"
         // & :hover {
         //     background-color: "#5469d4"
-    } 
+    },
+    addBtn: {
+        padding: 10
+    }
   }));
 
 export default AddSubgoalForm;
