@@ -25,9 +25,6 @@ const Projects = (props) => {
         setProjects(data.projects)
    };
 
-//    console.log("current project ",current, projects[current] )
-//    console.log("all projects ",projects)
-
    const id = 11111;
 
    async function updateProjects(){
@@ -51,19 +48,6 @@ const Projects = (props) => {
         setProjects: setProjects,
         updateProjects: updateProjects
     }
-
-    let history = useHistory();
-
-    const handleLogout = async () => {
-        try{
-            Auth.signOut();
-            Auth.setIsAuthenticated(false);
-            Auth.setUser(null);
-            history.push('/login')
-        } catch(error){
-            console.log(error.message)
-        }
-    };
 
     const addProject = (newProject) => {
         setProjects(projects => [...projects, newProject]);

@@ -47,7 +47,7 @@ async function addSubgoal(){
   const classes = useStyles();
     return (
         <div id="add_goal_form_container">
-        <Tooltip title="Add New Goal" aria-label="add">
+        <Tooltip title="Add Subgoal" aria-label="add">
             <AddCircleIcon 
                 className={classes.addBtn}
                 style={{ color: '#00B0FE' }}
