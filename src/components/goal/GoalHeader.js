@@ -26,9 +26,11 @@ export default function GoalHeader(props) {
     const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
     // //replacing old with new
     await props.projectManager.projects.splice(index, 1, updated);
-    await props.projectManager.setProjects([...props.projectManager.projects])
+    await props.projectManager.setProjects([...props.projectManager.projects]);
+    //displays save changes button
+    await props.projectManager.saveChanges(true);
     //makes network call to update DB
-    await props.projectManager.updateProjects()
+    // await props.projectManager.updateProjects()
     }
   }
 

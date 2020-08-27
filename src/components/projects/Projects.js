@@ -2,10 +2,10 @@ import React, {useState, useEffect} from 'react';
 import Amplify, { Auth, Storage } from 'aws-amplify';
 import '../projects/projects.css'
 import ProjectHeader from '../projectHeader/ProjectHeader';
+import SaveChangesBtn from '../buttons/SaveChangesBtn';
 
 import Goal from '../goal/Goal'
 import Button from '@material-ui/core/Button';
-import { useHistory } from "react-router-dom";
 import axios from 'axios';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,6 +17,7 @@ const tempData = require('../../tempData.json');
 const Projects = (props) => {
     const [projects, setProjects] = useState([{}]);
     const [current, setCurrent] = useState(0);
+    const [saveBtn, setSaveBtn] = useState(false);
 
 
     async function getProjects(){
@@ -34,6 +35,8 @@ const Projects = (props) => {
         "projects": projects
       };
      await axios.put(`${config.api.invokeUrl}/users/${11111}`, params);
+     await setSaveBtn(false)
+     console.log("SAVED")
     //  await getProjects();
     }catch (err) {
         console.log(`Error updating product: ${err}`);
@@ -46,7 +49,8 @@ const Projects = (props) => {
         current: current,
         setCurrent: setCurrent,
         setProjects: setProjects,
-        updateProjects: updateProjects
+        updateProjects: updateProjects,
+        saveChanges: setSaveBtn
     }
 
     const addProject = (newProject) => {
@@ -99,15 +103,16 @@ const Projects = (props) => {
         /> 
     : ''
 
+    const saveButton = saveBtn ? 
+        <SaveChangesBtn
+            update={updateProjects} />
+        : ''
+
     return(
         <div className={"projects-container"}>
-                {/* <Button
-                    onClick={handleLogout}>
-                    LogOut 
-                </Button> */}
-
                 {header}
                 {createGoal} 
+                {saveButton}
         </div>
     )
 };

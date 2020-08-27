@@ -7,6 +7,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Checkbox from '@material-ui/core/Checkbox';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import CloseIcon from '@material-ui/icons/Close';
+import { useHistory } from "react-router-dom";
+
 
 export default function SubGoalList(props) {
   const classes = useStyles();
@@ -17,10 +19,9 @@ export default function SubGoalList(props) {
 
   const handleCount = () => {
       return projectDetails.subGoals.filter(subgoal => subgoal.completed).length;
-
   };
 
-  const handleChange = (checkboxIndex) => {
+  async function handleChange(checkboxIndex){
     //gets the opposite of the current checked status, false if true, true if false
     const updatedCheckedStatus = !props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].completed;
     //updates the current checked status with the new one
@@ -30,9 +31,11 @@ export default function SubGoalList(props) {
     //finding the index of the old project
     const index = props.projectManager.projects.findIndex(proj => proj.projName === updated.projName);
     //replacing old with new
-    props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
+    await props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
+    //displays save changes button
+    await props.projectManager.saveChanges(true);
     //makes network call to update DB
-    props.projectManager.updateProjects()
+    // props.projectManager.updateProjects()
   };
   
   
@@ -49,8 +52,10 @@ export default function SubGoalList(props) {
     //replacing old with new
     await props.projectManager.projects.splice(index, 1, updated);
     await props.projectManager.setProjects([...props.projectManager.projects])
+    //displays save changes button
+    await props.projectManager.saveChanges(true)
     //makes network call to update DB
-    await props.projectManager.updateProjects()
+    // await props.projectManager.updateProjects()
     }
     
   }

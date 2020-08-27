@@ -38,8 +38,10 @@ async function addSubgoal(){
 
     await props.projectManager.projects.splice(index, 1, updated);
     await props.projectManager.setProjects([...props.projectManager.projects])
+    //displays save changes button
+    await props.projectManager.saveChanges(true)
     //updates DB
-    await props.projectManager.updateProjects()
+    // await props.projectManager.updateProjects()
     toggleModal();
   };
   

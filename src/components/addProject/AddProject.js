@@ -10,7 +10,6 @@ const AddProject = (props) => {
 
     const [hideInput, setHideInput] = useState(false);
 
-    // const handleInput = () => setHideInput(!hideInput);
 
     const handleSubmit = (projName) => {
         console.log(projName)
@@ -32,7 +31,6 @@ const AddProject = (props) => {
                     handleSubmit(e.target.value);
                 }
             }}
-        // onKeyDown={(target)=>handleSubmit(target.value)}
         />
         : ""
 
