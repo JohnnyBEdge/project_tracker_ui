@@ -40,9 +40,6 @@ const AddGoalForm = (props) => {
     await props.projectManager.setProjects([...props.projectManager.projects]);
     //displays save changes button
     await props.projectManager.saveChanges(true);
-
-    //updates DB
-    // await props.projectManager.updateProjects()
         toggleModal();
   };
 
@@ -120,17 +117,12 @@ const AddGoalForm = (props) => {
 const useStyles = makeStyles((theme) => ({
     paper: {
       position: 'absolute',
-    //   width: "95vw",
       backgroundColor: theme.palette.background.paper,
       border: '2px solid #000',
       boxShadow: theme.shadows[5],
       padding: theme.spacing(2, 4, 3),
       top: 100,
-    //   left: '37%',
     },
-    // button: {
-    //     margin: theme.spacing(2, 0, 2),
-    //   },
     input: {
         margin: theme.spacing(1,0,1),
         width: "98%"
@@ -148,8 +140,6 @@ const useStyles = makeStyles((theme) => ({
         height: "60px",
         margin: "0 auto",
         marginTop: "15px"
-        // & :hover {
-        //     background-color: "#5469d4"
     },
     addGoalBtn:{ 
         paddingLeft: 15,

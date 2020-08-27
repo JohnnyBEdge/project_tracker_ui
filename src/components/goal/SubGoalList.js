@@ -31,11 +31,11 @@ export default function SubGoalList(props) {
     //finding the index of the old project
     const index = props.projectManager.projects.findIndex(proj => proj.projName === updated.projName);
     //replacing old with new
-    await props.projectManager.setProjects(props.projectManager.projects.splice(index, 1, updated));
+    await props.projectManager.projects.splice(index, 1, updated);
+    await props.projectManager.setProjects([...props.projectManager.projects]);
     //displays save changes button
     await props.projectManager.saveChanges(true);
-    //makes network call to update DB
-    // props.projectManager.updateProjects()
+
   };
   
   

@@ -24,7 +24,7 @@ const CreateProjBtn = (props) => {
         //creates new goal
       let newProj = {projName, projDesc, goals}
     //   //adds new proj to current projects goal list
-      await props.projectManager.projects.push(newProj);
+    //   await props.projectManager.projects.push(newProj);
     //   //puts updated projects into variable
     //   let updated = props.projectManager.currentProject
     //   //finds old project by its name and returns the index
@@ -32,7 +32,7 @@ const CreateProjBtn = (props) => {
     //   console.log("PROJECT INDEX: ", index)
     //   //replaces old project copy with updated
     //   await projects.splice(index, 1, updated);
-      await props.projectManager.setProjects([...props.projectManager.projects]);
+      await props.projectManager.setProjects([...props.projectManager.projects,newProj]);
     //   await props.projectManager.setCurrent(props.projectManager.projects.length + 1);
     //   //displays save changes button
       await props.projectManager.saveChanges(true);
@@ -59,7 +59,7 @@ const CreateProjBtn = (props) => {
                 >
 
                 <div className={classes.paper}>
-                    <h2 id="simple-modal-title">Add New Goal</h2>
+                    <h2 id="simple-modal-title">Add New Project</h2>
                     <FormControl 
                         variant="outlined"
                         fullWidth={true}
@@ -114,21 +114,17 @@ const CreateProjBtn = (props) => {
 const useStyles = makeStyles((theme) => ({
     addProjBtn: {
         fontSize: 15,
-        color: "white"
+        color: "white",
+        width: 150
     },
     paper: {
         position: 'absolute',
-      //   width: "95vw",
         backgroundColor: theme.palette.background.paper,
         border: '2px solid #000',
         boxShadow: theme.shadows[5],
         padding: theme.spacing(2, 4, 3),
         top: 100,
-      //   left: '37%',
       },
-      // button: {
-      //     margin: theme.spacing(2, 0, 2),
-      //   },
       input: {
           margin: theme.spacing(1,0,1),
           width: "98%"
@@ -137,22 +133,7 @@ const useStyles = makeStyles((theme) => ({
           marginTop: "-40px",
           width: "95vw",
           margin: "0 auto"
-      },
-      editButton: {
-          backgroundColor: "#6772e5",
-          color: "#fff",
-          width: "100%",
-          boxShadow: "0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08)",
-          height: "60px",
-          margin: "0 auto",
-          marginTop: "15px"
-          // & :hover {
-          //     background-color: "#5469d4"
-      },
-      addGoalBtn:{ 
-          paddingLeft: 15,
-          marginTop: 10
-      } 
+      }
   }));
 
 

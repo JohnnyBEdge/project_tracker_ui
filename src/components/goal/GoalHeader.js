@@ -29,8 +29,7 @@ export default function GoalHeader(props) {
     await props.projectManager.setProjects([...props.projectManager.projects]);
     //displays save changes button
     await props.projectManager.saveChanges(true);
-    //makes network call to update DB
-    // await props.projectManager.updateProjects()
+
     }
   }
 

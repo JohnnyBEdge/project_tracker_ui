@@ -1,4 +1,6 @@
 .projects-container {
     display: grid;
     border: solid black 2px;
+    max-width: 500px; 
+    margin: 0 auto;
 }

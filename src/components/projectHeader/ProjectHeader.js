@@ -30,13 +30,6 @@ const totalGoals = props.projectManager.currentProject.goals.length;
       <div className={classes.btnContainer}>
         <CreateProjBtn 
           projectManager={props.projectManager}/>
-        {/* <Button 
-          className={classes.addProjBtn}
-          // variant="outlined"
-          fullWidth="true">
-            
-            + New Project
-        </Button> */}
         <LogoutBtn
           auth={props.auth}/>
       </div>
@@ -70,10 +63,6 @@ const totalGoals = props.projectManager.currentProject.goals.length;
 };
 
 const useStyles = makeStyles(() => ({
-  addProjBtn: {
-    fontSize: 15,
-    color: "white"
-  },
   progressBar: {
     display: "flex"
   },
@@ -85,6 +74,6 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "#545352",
     color: "white",
     display: "flex",
-    justifyContent: "space-between"
-  }
+    justifyContent: "space-between",
+    }
 }));
