@@ -4,6 +4,7 @@ import AboutAccordion from '../aboutProject/AboutAccordion';
 import ProgressBar from '../progressBar/ProgressBar';
 import AddGoalForm from '../goal/AddGoalForm';
 import LogoutBtn from '../buttons/LogoutBtn';
+import CreateProjBtn from '../buttons/CreateProjBtn';
 
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -27,13 +28,15 @@ const totalGoals = props.projectManager.currentProject.goals.length;
   return (
     <div className={classes.root}>
       <div className={classes.btnContainer}>
-        <Button 
+        <CreateProjBtn 
+          projectManager={props.projectManager}/>
+        {/* <Button 
           className={classes.addProjBtn}
           // variant="outlined"
           fullWidth="true">
             
             + New Project
-        </Button>
+        </Button> */}
         <LogoutBtn
           auth={props.auth}/>
       </div>
