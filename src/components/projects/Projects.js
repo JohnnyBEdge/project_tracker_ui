@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-// import Amplify, { Auth, Storage, loadingBar } from 'aws-amplify';
+import Amplify, { Auth, Storage, loadingBar } from 'aws-amplify';
 import '../projects/projects.css'
 import ProjectHeader from '../projectHeader/ProjectHeader';
 import SaveChangesBtn from '../buttons/SaveChangesBtn';
@@ -15,10 +15,14 @@ const Projects = (props) => {
     const [projects, setProjects] = useState([{}]);
     const [current, setCurrent] = useState(0);
     const [saveBtn, setSaveBtn] = useState(false);
+    const [clientID, setClientID] = useState(null)
 
 
     async function getProjects(){
-        let response = await fetch(`${config.api.invokeUrl}/users/${11111}`);
+        const session = await Auth.currentUserInfo();
+        const clientID = await session.attributes.sub;
+        let response = await fetch(`${config.api.invokeUrl}/users/${clientID}`);
+        // let response = await fetch(`${config.api.invokeUrl}/users/${11111}`);
         let data = await response.json();
         setProjects(data.projects)
    };
@@ -63,11 +67,19 @@ const Projects = (props) => {
         } else {
             setCurrent(current - 1)
         };
-        console.log("current: ",current)
     };
+    // async function getUser(){
+    //     const session = await Auth.currentUserInfo();
+    //     await setClientID(session.attributes.sub);
+    //     await console.log("CLIENT: ", session.attributes.sub)
+    // }
+    
+    
+    
 
     useEffect(() => {
         getProjects();
+        // getUser();
       }, []);
 
       let index = 0;

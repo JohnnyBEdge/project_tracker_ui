@@ -35,12 +35,19 @@ function App() {
       //gets user object
       const user = await Auth.currentAuthenticatedUser();
       setUser(user);
-      // console.log("clientID: ",user.pool.clientId)
+      console.log("clientID: ",user.pool.clientId)
     } catch(error){
       console.log(error);
     }
     setIsAuthenticating(false);
   }
+
+  // const PrivateRoute = 
+  //   user ?
+  //           <Route exact path="/projects" render={(props) => <Projects {...props} auth={authProps}/>} />
+  //           : <Redirect to="/login" />
+
+
 
   useEffect(() => {
     loadUserState();

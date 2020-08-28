@@ -17,6 +17,7 @@ const AddGoalForm = (props) => {
     const [goalName, setGoalName] = useState('');
     const [goalDesc, setGoalDesc] = useState('');
     const [subGoals] = useState([]);
+    const [completed] = useState(false);
     const [open, setOpen] = useState(false); 
 
     let projects = props.projectManager.projects;
@@ -27,7 +28,7 @@ const AddGoalForm = (props) => {
 
   async function addGoal(){
       //creates new goal
-    let newGoal = {goalName, goalDesc, subGoals}
+    let newGoal = {goalName, goalDesc, subGoals, completed};
     //adds new goal to current projects goal list
     await props.projectManager.currentProject.goals.push(newGoal);
     //puts updated projects into variable

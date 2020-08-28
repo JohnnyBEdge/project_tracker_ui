@@ -22,8 +22,9 @@ export default function ProjectHeader(props) {
 // };
   // return projectDetails.subGoals.filter(subgoal => subgoal.checked).length;
 
-const completedGoals = props.projectManager.currentProject.goals.filter(goal => goal.goalCompleted).length;
+const completedGoals = props.projectManager.currentProject.goals.filter(goal => goal.completed).length;
 const totalGoals = props.projectManager.currentProject.goals.length;
+const progress = {completedGoals}/{totalGoals};
 
   return (
     <div className={classes.root}>
@@ -47,6 +48,7 @@ const totalGoals = props.projectManager.currentProject.goals.length;
           </Tooltip>
         <ProgressBar 
           projectManager={props.projectManager}
+          progress={progress}
           />
       </div>
       <p className={classes.completed}>Goals Completed: {completedGoals}/{totalGoals}</p>

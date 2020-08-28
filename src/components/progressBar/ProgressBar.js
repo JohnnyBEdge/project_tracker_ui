@@ -36,11 +36,7 @@ const BorderLinearProgress = withStyles((theme) => ({
 
 const useStyles = makeStyles({
   root: {
-    // display: "flex",
-    // justifyContent: "space-evenly",
     flexGrow: 1,
-    // width: "100%",
-    // margin: "0 auto",
     padding: 15
   }
 });

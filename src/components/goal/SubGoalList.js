@@ -21,7 +21,7 @@ export default function SubGoalList(props) {
       return projectDetails.subGoals.filter(subgoal => subgoal.completed).length;
   };
 
-  async function handleChange(checkboxIndex){
+  async function updateSubgoal(checkboxIndex){
     //gets the opposite of the current checked status, false if true, true if false
     const updatedCheckedStatus = !props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].completed;
     //updates the current checked status with the new one
@@ -35,7 +35,6 @@ export default function SubGoalList(props) {
     await props.projectManager.setProjects([...props.projectManager.projects]);
     //displays save changes button
     await props.projectManager.saveChanges(true);
-
   };
   
   
@@ -64,6 +63,10 @@ export default function SubGoalList(props) {
     handleCount()
   }, []);
 
+  // console.log("subgoal length", props.goalDetails.subGoals.length)
+  // console.log("completed subgoal length", props.goalDetails.subGoals.filter(sub => sub.completed).length)
+
+
   return (
     
     <List className={classes.root}>
@@ -86,7 +89,7 @@ export default function SubGoalList(props) {
                 color="default"
                 // index={++index}
                  value={index}
-                onChange={(e)=>handleChange(e.target.value)}
+                onChange={(e)=>updateSubgoal(e.target.value)}
                 // disableRipple
                 inputProps={{ 'aria-labelledby': labelId }}
               />

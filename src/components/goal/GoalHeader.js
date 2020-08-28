@@ -13,8 +13,9 @@ import CloseIcon from '@material-ui/icons/Close';
 
 export default function GoalHeader(props) {
 
-  const [goalComplete, setGoalComplete] = useState(false)
+  const [goalComplete, setGoalComplete] = useState(true)
   const projectDetails = props.goalDetails;
+  const [checked, setChecked] = useState(false)
 
   async function deleteGoal(idx){
     if(window.confirm("Are you sure you want to delete this subgoal?")){
@@ -23,28 +24,32 @@ export default function GoalHeader(props) {
     //adding update project to variable
     const updated = props.projectManager.currentProject
     // //finding the index of the old project
-    const index = props.projectManager.projects.findIndex(proj => proj.id === updated.id);
+    const index = props.projectManager.projects.findIndex(proj => proj.projName === updated.projName);
     // //replacing old with new
     await props.projectManager.projects.splice(index, 1, updated);
     await props.projectManager.setProjects([...props.projectManager.projects]);
     //displays save changes button
     await props.projectManager.saveChanges(true);
-
     }
   }
-
-
 
   const handleCount = () => {
     return projectDetails.subGoals.filter(subgoal => subgoal.completed).length;
 };
 
-const completedGoals = props.projectManager.currentProject.goals.filter(goal => goal.goalCompleted).length;
-const totalGoals = props.projectManager.currentProject.goals.length;
+// const completedGoals = props.projectManager.currentProject.goals.filter(goal => goal.completed).length;
+// const totalGoals = props.projectManager.currentProject.goals.length;
 
   const classes = useStyles();
 
   const percentProgress = handleCount()/props.goalDetails.subGoals.length *100;
+
+  // function goalCompleted(){
+  //   percentProgress === 100 ? setGoalComplete(true) : setGoalComplete(false);
+  //   console.log(goalComplete)
+  // };
+
+
 
   return (
     <div className={classes.goalHeaderContainer}>
@@ -53,7 +58,8 @@ const totalGoals = props.projectManager.currentProject.goals.length;
             color="default"
             inputProps={{ 'aria-label': 'secondary checkbox' }}
             checked={percentProgress === 100 ? true : false}
-            disabled />
+            disabled
+            />
 
         <p className={classes.goalTitle}>{props.goalDetails.goalName}</p>
 

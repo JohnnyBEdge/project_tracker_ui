@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Auth} from 'aws-amplify';
+import ProjectIcon from '../../assets/images/project-icon.png';
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -70,9 +71,11 @@ const Login = (props) => {
             <Container component="main" maxWidth="xs" className={classes.formContainer}>
             <CssBaseline />
             <div className={classes.paper}>
-                <Avatar className={classes.avatar}>
-                    <LockOutlinedIcon />
-                </Avatar>
+                {/* <Avatar className={classes.avatar}> */}
+                    {/* <LockOutlinedIcon /> */}
+                    <img className={classes.avatar} src={ProjectIcon} alt="project icon"/>
+
+                {/* </Avatar> */}
                 <Typography component="h1" variant="h5">
                 Sign in
                 </Typography>
@@ -159,7 +162,7 @@ const useStyles = makeStyles((theme) => ({
     },
     avatar: {
       margin: theme.spacing(1),
-      backgroundColor: theme.palette.secondary.main,
+      width: 175
     },
     form: {
       width: '100%', // Fix IE 11 issue.
