@@ -13,6 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Auth } from 'aws-amplify';
+import axios from 'axios';
+
+const config = require('../../config.json');
 
 const RegisterForm = (props) => {
 
@@ -87,7 +90,10 @@ const RegisterForm = (props) => {
                     email: email
                 }
             })
-            console.log(signUpResponse);
+            console.log("sign up response", signUpResponse);
+            const clientID = await signUpResponse.userSub;
+            await axios.put(`${config.api.invokeUrl}/users/${clientID}`);
+            // signUpResponse.userSub = 9ed4beb3-c931-4d24-aadf-9494bb7368b7
             setValidForm(false);
             history.push('/login');
 
