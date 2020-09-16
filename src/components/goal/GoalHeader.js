@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 // import ProjectTitle from '../projectTitle/ProjectTitle';
 // import AboutAccordion from '../aboutProject/AboutAccordion';
 import AddSubgoalForm from '../goal/AddSubgoalForm';
@@ -13,9 +13,9 @@ import CloseIcon from '@material-ui/icons/Close';
 
 export default function GoalHeader(props) {
 
-  const [goalComplete, setGoalComplete] = useState(true)
+  const [goalComplete, setGoalComplete] = useState(true);
   const projectDetails = props.goalDetails;
-  const [checked, setChecked] = useState(false)
+  const [checked, setChecked] = useState(false);
 
   async function deleteGoal(idx){
     if(window.confirm("Are you sure you want to delete this subgoal?")){
@@ -44,11 +44,19 @@ export default function GoalHeader(props) {
 
   const percentProgress = handleCount()/props.goalDetails.subGoals.length *100;
 
-  // function goalCompleted(){
-  //   percentProgress === 100 ? setGoalComplete(true) : setGoalComplete(false);
-  //   console.log(goalComplete)
-  // };
+  function checkGoals(){
+    if(handleCount() === props.goalDetails.subGoals.length){
+      console.log("GOal completed");
+      setGoalComplete(true);
+    }
+      console.log("Goal not complete");
+      setGoalComplete(false);
+  }
 
+
+useEffect(() => {
+  checkGoals();
+}, []);
 
 
   return (
@@ -79,6 +87,7 @@ export default function GoalHeader(props) {
           progress={percentProgress}/>
           {/* subgoals completed over total */}
         <p>{handleCount()}/ {props.goalDetails.subGoals.length}</p>
+        
       </div>
     </div>
   );

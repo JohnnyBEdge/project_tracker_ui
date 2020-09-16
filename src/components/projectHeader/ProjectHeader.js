@@ -21,10 +21,10 @@ export default function ProjectHeader(props) {
 //     return props.projectManager.currentProject.subGoals.filter(subgoal => subgoal.checked).length;
 // };
   // return projectDetails.subGoals.filter(subgoal => subgoal.checked).length;
-
 const completedGoals = props.projectManager.currentProject.goals.filter(goal => goal.completed).length;
 const totalGoals = props.projectManager.currentProject.goals.length;
-const progress = {completedGoals}/{totalGoals};
+// const progress = {completedGoals}/{totalGoals};
+const progress = completedGoals/totalGoals *100;
 
   return (
     <div className={classes.root}>
