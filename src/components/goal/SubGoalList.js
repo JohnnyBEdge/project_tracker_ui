@@ -27,7 +27,19 @@ export default function SubGoalList(props) {
     //updates the current checked status with the new one
     props.projectManager.currentProject.goals[props.index].subGoals[checkboxIndex].completed = updatedCheckedStatus
     //adding update project to variable
-    const updated = props.projectManager.currentProject
+    let updated = props.projectManager.currentProject;
+    
+    
+    //creates array of newly updated subgoal completed statuses
+    const isCompleted = updated.goals[props.index].subGoals.map(goal => goal.completed);
+    //tests if all subgoals are completed, updates goal completed status if true
+    const isTrue = (currVal) => currVal === true;
+    if(isCompleted.every(isTrue)){
+      props.projectManager.currentProject.goals[props.index].completed = true;
+      //if true, update variable again with new goal completion status
+      updated = props.projectManager.currentProject
+    }
+
     //finding the index of the old project
     const index = props.projectManager.projects.findIndex(proj => proj.projName === updated.projName);
     //replacing old with new

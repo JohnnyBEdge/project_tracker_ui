@@ -13,7 +13,7 @@ import CloseIcon from '@material-ui/icons/Close';
 
 export default function GoalHeader(props) {
 
-  const [goalComplete, setGoalComplete] = useState(true);
+  const [goalComplete, setGoalComplete] = useState('');
   const projectDetails = props.goalDetails;
   const [checked, setChecked] = useState(false);
 
@@ -44,18 +44,13 @@ export default function GoalHeader(props) {
 
   const percentProgress = handleCount()/props.goalDetails.subGoals.length *100;
 
-  function checkGoals(){
-    if(handleCount() === props.goalDetails.subGoals.length){
-      console.log("GOal completed");
-      setGoalComplete(true);
-    }
-      console.log("Goal not complete");
-      setGoalComplete(false);
-  }
+  // function checkGoals(){
+  //   return handleCount() === props.goalDetails.subGoals.length
+  // }
 
 
 useEffect(() => {
-  checkGoals();
+  // checkGoals();
 }, []);
 
 

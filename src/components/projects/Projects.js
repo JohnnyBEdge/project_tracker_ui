@@ -17,25 +17,31 @@ const Projects = (props) => {
     const [saveBtn, setSaveBtn] = useState(false);
     const [clientID, setClientID] = useState(null)
 
+    // const session = await Auth.currentUserInfo();
+    // const clientID = await session.attributes.sub;
+    // const session = Auth.currentUserInfo();
+    // const clientID = session.attributes.sub;
 
     async function getProjects(){
-        const session = await Auth.currentUserInfo();
-        const clientID = await session.attributes.sub;
+        // const session = await Auth.currentUserInfo();
+        // const clientID = await session.attributes.sub;
         let response = await fetch(`${config.api.invokeUrl}/users/${clientID}`);
         // let response = await fetch(`${config.api.invokeUrl}/users/${11111}`);
         let data = await response.json();
         setProjects(data.projects)
    };
 
-   const id = 11111;
+//    const id = 11111;
 
    async function updateProjects(){
+    // const session = await Auth.currentUserInfo();
+    // const clientID = await session.attributes.sub;
     try {
       const params = {
-        "id": JSON.stringify(id),
+        "id": JSON.stringify(clientID),
         "projects": projects
       };
-     await axios.put(`${config.api.invokeUrl}/users/${11111}`, params);
+     await axios.put(`${config.api.invokeUrl}/users/${clientID}`, params);
      await setSaveBtn(false)
     }catch (err) {
         console.log(`Error updating product: ${err}`);
@@ -68,18 +74,18 @@ const Projects = (props) => {
             setCurrent(current - 1)
         };
     };
-    // async function getUser(){
-    //     const session = await Auth.currentUserInfo();
-    //     await setClientID(session.attributes.sub);
-    //     await console.log("CLIENT: ", session.attributes.sub)
-    // }
+    async function getUser(){
+        const session = await Auth.currentUserInfo();
+        await setClientID(session.attributes.sub);
+        await console.log("CLIENT: ", session.attributes.sub)
+    }
     
     
     
 
     useEffect(() => {
         getProjects();
-        // getUser();
+        getUser();
       }, []);
 
       let index = 0;
